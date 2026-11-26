@@ -1,1607 +1,941 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HAKAM MAFIA — مافيا الشارع</title>
-<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Almarai:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ==========================================================================
-   الهوية البصرية: STREET MAFIA — مافيا الشارع
-   الأسود الفحمي، الأحمر الداكن، الذهبي الملكي، الرمادي الداكن
-   ========================================================================== */
-:root {
-  --bg: #0c0c0e;
-  --bg-radial: #181518;
-  --sf: #16161a;
-  --sf2: #222228;
-  --tx: #f5f3ef;
-  --mu: #9a968e;
-  --ac: #b91c1c;
-  --ac-glow: rgba(185, 28, 28, 0.35);
-  --gd: #d4af37;
-  --gd-light: #f3d56b;
-  --gd-glow: rgba(212, 175, 55, 0.25);
-  --gr: #15803d;
-  --table-felt: radial-gradient(circle at 50% 45%, #1f191a 0%, #110e10 70%, #090809 100%);
-  color-scheme: dark;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
+:root{--bg:#121212;--sf:#222224;--sf2:#323235;--tx:#f5f3ee;--mu:#9d9a92;--ac:#9c1c28;--gd:#d4af37;--gr:#2a8f5c;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) radial-gradient(ellipse at 50% -8%,#2b2024,transparent 62%) no-repeat fixed;color:var(--tx);font-family:Almarai,Tahoma,sans-serif;line-height:1.7;min-height:100vh;transition:background .4s ease}
+body.mood-night{background:#0b0c12 radial-gradient(ellipse at 50% -10%,#1d172e,transparent 65%) no-repeat fixed}
+body.mood-day{background:#141310 radial-gradient(ellipse at 50% -10%,#332814,transparent 62%) no-repeat fixed}
+.w{max-width:560px;margin:auto;padding:14px 16px 44px}
+.fl{height:12px;background:linear-gradient(#c4283a 0 25%,#0d0d0d 25% 75%,#2a8f5c 75%);border-radius:2px;outline:1px solid #8886;margin-bottom:16px}
+h1,h2,h3,.tag,.tm,.big{font-family:Lalezar,Almarai,sans-serif;font-weight:400}
+h1{font-size:3.4rem;line-height:1.05;margin:0}
+h1 small{display:block;font:400 1rem Almarai,sans-serif;color:var(--mu);margin-top:6px}
+h2{font-size:1.9rem;margin:6px 0}
+h3{font-size:1.3rem;margin:0 0 6px;color:var(--gd)}
+.stp0{display:inline-block;transform:rotate(-2.5deg);border:2px dashed #e0525e;color:#e0525e;padding:2px 12px;margin:10px 0;font-family:Lalezar,sans-serif;font-size:1.15rem}
+.mu{color:var(--mu);font-size:.9rem;margin:6px 0}
+.card{background:var(--sf);border:1px solid var(--sf2);border-radius:6px;padding:14px;margin:14px 0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gd);outline-offset:2px}
+.btn{display:block;width:100%;padding:13px;margin:10px 0;border-radius:6px;border:2px solid var(--sf2);background:var(--sf2);font:400 1.25rem Lalezar,sans-serif;transition:transform .12s ease,opacity .15s ease}
+.btn:active:not(:disabled){transform:scale(.99)}
+.btn.red{background:var(--gd);border-color:var(--gd);color:#17130a}
+.btn.gold{background:none;border-color:var(--gd);color:var(--gd)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.rl{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--sf2)}
+.rl b{display:block}.rl span{font-size:.78rem;color:var(--mu);line-height:1.4;display:block}
+.stp{display:flex;align-items:center;gap:8px;flex:none}
+.stp button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gd);background:none;font-size:1.3rem;color:var(--gd);line-height:1}
+.stp i{font:400 1.5rem Lalezar,sans-serif;min-width:26px;text-align:center;font-style:normal}
+.tot{display:flex;justify-content:space-between;align-items:baseline}
+.big{font-size:2.6rem;color:var(--gd)}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pre button{padding:6px 12px;border-radius:20px;border:1px solid var(--gd);background:none;color:var(--gd);font-size:.85rem}
+input[type=text],input[type=password],input[type=number],input:not([type]){width:100%;padding:10px;margin:3px 0;border-radius:4px;border:1px solid var(--sf2);background:var(--bg);color:var(--tx);font:inherit}
+input[type=range]{width:100%;accent-color:var(--gd)}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.chk{display:flex;gap:8px;align-items:center;margin:8px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.pl{padding:14px 8px;border-radius:4px;border:1.5px solid var(--sf2);background:var(--sf);font:400 1.2rem Lalezar,sans-serif;display:flex;flex-direction:column;align-items:center}
+.pl:nth-child(odd){transform:rotate(-.8deg)}.pl:nth-child(even){transform:rotate(.7deg)}
+.pl span{font:400 .75rem Almarai,sans-serif;color:var(--mu)}
+.pl.done{opacity:.4}.pl.sel{border-color:var(--gd);background:var(--sf2)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.bar .acts{display:flex;gap:6px;flex-wrap:wrap}
+.bar button{padding:6px 10px;border-radius:4px;border:1px solid var(--gd);background:none;color:var(--gd);font-size:.88rem}
+.tag{color:var(--gd);font-size:1.15rem}
+.ann{font-size:1.15rem;border-right:4px solid var(--ac);padding-right:12px;margin:10px 0}
+.nar-box{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--sf2);border-radius:6px;padding:8px 12px;margin:10px 0;font-size:.86rem;color:var(--tx);border:1px solid #d4af3744}
+.nar-box .acts{display:flex;gap:6px;flex-wrap:wrap}
+.nar-box button{background:none;border:1px solid var(--gd);color:var(--gd);border-radius:4px;padding:4px 10px;font-size:.82rem}
+.tm{font-size:4rem;text-align:center;color:var(--gd);line-height:1.2}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cd{width:min(68vw,250px);aspect-ratio:63/88;border-radius:12px;margin:14px auto;display:grid;place-items:center;text-align:center;padding:14px;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none}
+.cd.back{background:repeating-linear-gradient(45deg,#4a1219,#4a1219 9px,#5c1a23 9px,#5c1a23 18px);border:3px double var(--gd);color:var(--gd);font:400 1.4rem Lalezar,sans-serif}
+.cd.front{background:#efe5cc;color:#1a1915;border:3px solid var(--ac);display:flex;flex-direction:column;justify-content:center;gap:8px}
+.cd.front b{font:400 2rem Lalezar,sans-serif}.cd.front small{font-size:.85rem;line-height:1.5}
+.tb{position:relative;width:min(100%,560px);aspect-ratio:1;margin:12px auto;container-type:inline-size}
+.tb:before{content:"";position:absolute;inset:17%;border-radius:50%;background:radial-gradient(circle at 50% 38%,#2e2a2c,#151516 72%);border:2px solid #d4af3766;box-shadow:0 0 44px #d4af3720,0 0 0 8px #0c0c0c,inset 0 0 36px #000}
+.lg0{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none;font:400 7cqw/1.05 Lalezar,sans-serif;color:var(--gd);text-shadow:0 0 18px #d4af3755}
+.st{position:absolute;width:calc(var(--w)*1%);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:0;color:var(--tx)}
+.st b{width:100%;aspect-ratio:1;border-radius:50%;background:var(--sf2);border:2px solid #5a5a5e;display:grid;place-items:center;font:400 calc(var(--w)*.45cqw) Lalezar,sans-serif;transition:box-shadow .2s,border-color .2s}
+.st span{width:100%;text-align:center;font-size:calc(var(--w)*.2cqw);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st em{display:block;font-style:normal;color:#e0525e}
+.st:focus-visible b{outline:2px solid var(--gd);outline-offset:2px}
+.st.sel b{border-color:var(--gd);box-shadow:0 0 0 3px #d4af3744,0 0 18px var(--gd)}
+.st.dead{opacity:.45}.st.dead b{border-color:var(--ac);color:var(--ac);background:#240c10}.st.dead span{text-decoration:line-through}
+.st.sil b{border-style:dashed;border-color:#e0525e}
+.st.done{opacity:.35}
+.tb.tiny .st span{display:none}
+.pl.sil{border-style:dashed;border-color:var(--ac)}
+.qb{background:#fff;border-radius:12px;width:min(82vw,310px);margin:12px auto;padding:12px;box-shadow:0 8px 30px #0008}
+.qb svg,.qb canvas,.qb img{display:block;width:100%;height:auto;border-radius:4px}
+.st.cur b,.pl.cur{border-color:#fff;box-shadow:0 0 0 3px #fff3,0 0 18px var(--gd)}
+select{padding:8px;border-radius:4px;border:1px solid var(--sf2);background:var(--bg);color:var(--tx);font:inherit;max-width:55%}
+#modal{position:fixed;inset:0;background:rgba(10,10,8,.93);z-index:20;display:none;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+#modal>div{max-width:420px;margin:auto}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ac);color:#fff;padding:10px 16px;border-radius:6px;display:none;z-index:30;max-width:90vw;text-align:center}
+.lg{font-size:.88rem;color:var(--mu);margin:2px 0}
+table{width:100%;border-collapse:collapse}td{padding:6px 4px;border-bottom:1px solid var(--sf2)}
+details{margin:10px 0;color:var(--mu);font-size:.9rem}summary{cursor:pointer;color:var(--gd)}
+.ft{text-align:center;margin-top:26px;font:400 1.1rem Lalezar,sans-serif;color:var(--gd)}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.76rem;background:#d4af3722;color:var(--gd);border:1px solid #d4af3755}
+
+/* HAKAM MAFIA — polished interface layer */
+:root{--bg:#0c0b0d;--sf:#171518;--sf2:#282329;--tx:#f8f4ee;--mu:#b4abb0;--ac:#a51d2d;--gd:#d7b34b;--gr:#32855d}
+body{background-color:var(--bg);background-image:radial-gradient(ellipse at 50% -8%,#341820 0,transparent 58%);font-size:16px}
+.w{max-width:720px;padding:20px 18px 52px}
+h1{font-size:clamp(2.35rem,8vw,3.4rem);letter-spacing:.2px}
+h2{margin:8px 0 10px}
+.card{background:linear-gradient(145deg,#1c191d,#151317);border:1px solid #41343b;border-radius:12px;padding:16px;margin:16px 0;box-shadow:0 8px 26px #0003}
+.btn{min-height:48px;border-radius:9px;border-width:1px;font-size:1.16rem;letter-spacing:.1px}
+.btn.red{background:linear-gradient(135deg,#a51d2d,#711522);border-color:#c34b57;color:#fff;box-shadow:0 5px 16px #810f2028}
+.btn.gold{border-color:#9d8035;color:#e4c567;background:#211c16}
+.btn:not(:disabled):hover{filter:brightness(1.12)}
+.btn:focus-visible,.bar button:focus-visible,.pre button:focus-visible{outline:3px solid #f1d77f;outline-offset:3px}
+.stp button{width:42px;height:42px}
+.rl{padding:10px 0}
+.rl b{font-size:.98rem}
+.rl span{line-height:1.55}
+input[type=text],input[type=password],input[type=number],input:not([type]),select{border-radius:8px;min-height:42px}
+.names{gap:8px}
+.names input{min-width:0}
+.pre button,.bar button,.nar-box button{border-radius:8px;min-height:38px}
+.nar-box{border-radius:10px;background:#211c20;padding:10px 12px}
+.cd{box-shadow:0 14px 34px #0008}
+.cd.back{background:repeating-linear-gradient(45deg,#48121a,#48121a 9px,#641b26 9px,#641b26 18px)}
+.cd.front{box-shadow:0 12px 35px #0008}
+.tb:before{border-color:#d7b34b88}
+#modal{backdrop-filter:blur(5px)}
+#modal>div{border:1px solid #57434a;border-radius:14px;background:#111014;padding:12px;min-height:120px}
+#toast{border:1px solid #d7b34b88;box-shadow:0 8px 25px #0008;border-radius:10px}
+.ft{font-size:1rem}
+.badge{border-radius:20px}
+@media(max-width:440px){.w{padding:12px 12px 38px}.card{padding:12px}.two{gap:7px}.btn{padding:11px 8px}.names{grid-template-columns:1fr 1fr}.tm{font-size:3.4rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* Home hero based on the supplied HAKAM MAFIA reference */
+.home-hero{position:relative;text-align:center;padding:0 0 4px;margin:0 0 20px}
+.home-hero:before{content:"";display:block;height:5px;width:100%;border-radius:9px;background:#b51d2a;margin:0 0 13px;box-shadow:0 0 14px #a51d2d38}
+.hero-topbar{display:flex;direction:ltr;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px}
+.hero-action{direction:rtl;border:1px solid #785f24;background:#171518;color:#e4c567;border-radius:10px;padding:8px 12px;min-height:38px;font:700 .86rem Almarai,Tahoma,sans-serif}
+.hero-action:hover{background:#282127;border-color:#c7a342}
+.hero-kicker{display:inline-block;color:#e6bd3c;border:1px solid #70571e;border-radius:30px;background:#211b18;padding:3px 14px;margin:0 0 7px;font:700 .78rem Almarai,sans-serif;letter-spacing:2px}
+.hero-title{font-family:Arial,Almarai,sans-serif!important;font-size:clamp(2.25rem,8vw,3.25rem)!important;line-height:1.12!important;letter-spacing:1px!important;font-weight:900!important;color:#f1eeee;margin:0 0 10px!important;text-shadow:0 3px 14px #0008}
+.hero-subtitle{color:#b7adb0;font-size:.98rem;margin:0 0 5px}
+.hero-credit{display:inline-block;color:#ff9b9f;background:#291417;border:1px dashed #a51d2d;border-radius:8px;padding:5px 13px;margin:0 0 13px;font-weight:700;font-size:.86rem}
+.hero-mottos{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.hero-motto{display:inline-flex;align-items:center;justify-content:center;border-radius:24px;padding:6px 12px;font-size:.82rem;font-weight:700}
+.hero-motto.red{color:#ff9ca4;border:1px solid #9f2632;background:#291518}
+.hero-motto.gold{color:#ebc75e;border:1px solid #806323;background:#211d15}
+.hero-lead{color:#b4abb0;font-size:.88rem;margin:0 auto;max-width:560px}
+.audio-panel-note{background:#211c20;border:1px solid #6a5125;border-radius:10px;padding:10px;color:#e8d7a3;font-size:.84rem;line-height:1.7}
+.audio-status{border-right:3px solid var(--gd);padding:8px 10px;background:#211c20;border-radius:7px;color:#ded4c8;font-size:.86rem;margin:10px 0}
+.audio-panel select{width:100%;max-width:100%;margin:5px 0 10px}
+@media(max-width:440px){.hero-action{padding:7px 9px;font-size:.76rem}.hero-title{font-size:2.25rem!important}.hero-subtitle{font-size:.88rem}.hero-lead{font-size:.82rem}}
 
-html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-body {
-  margin: 0;
-  background: radial-gradient(circle at top center, var(--bg-radial), var(--bg) 65%);
-  color: var(--tx);
-  font-family: 'Almarai', Tahoma, sans-serif;
-  line-height: 1.65;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.w {
-  max-width: 720px;
-  margin: auto;
-  padding: 14px 16px 52px;
-}
-
-/* الشريط السينمائي العلوي */
-.fl {
-  height: 5px;
-  background: linear-gradient(90deg, var(--ac) 0%, var(--gd) 50%, var(--ac) 100%);
-  border-radius: 99px;
-  box-shadow: 0 0 14px var(--ac-glow);
-  margin-bottom: 14px;
-}
-
-/* شريط الأدوات العلوي */
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-/* التايبوغرافي والعناوين */
-h1, h2, h3, .tag, .tm, .big, .brand-title {
-  font-family: 'Lalezar', 'Almarai', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-}
-
-.hero-header {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.brand-badge {
-  display: inline-block;
-  font-size: 0.78rem;
-  letter-spacing: 2.5px;
-  color: var(--gd);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  background: rgba(212, 175, 55, 0.08);
-  padding: 3px 14px;
-  border-radius: 99px;
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-h1 {
-  font-size: clamp(2.6rem, 7vw, 3.6rem);
-  line-height: 1.05;
-  margin: 0;
-  background: linear-gradient(180deg, #ffffff 20%, #d6d1c7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-}
-
-h1 small {
-  display: block;
-  font: 400 0.98rem 'Almarai', sans-serif;
-  -webkit-text-fill-color: var(--mu);
-  margin-top: 6px;
-}
-
-h2 { font-size: 1.85rem; margin: 6px 0; color: var(--tx); }
-h3 { font-size: 1.28rem; margin: 0 0 8px; color: var(--gd); }
-
-.stp0 {
-  display: inline-block;
-  border: 1px dashed rgba(185, 28, 28, 0.7);
-  background: rgba(185, 28, 28, 0.1);
-  color: #fca5a5;
-  padding: 3px 14px;
-  border-radius: 6px;
-  margin: 8px 0;
-  font-family: 'Lalezar', sans-serif;
-  font-size: 1.05rem;
-}
-
-/* شارات القوانين وشعار الجلسة */
-.street-rules-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-.rule-pill {
-  padding: 5px 13px;
-  border-radius: 99px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  background: rgba(185, 28, 28, 0.16);
-  border: 1px solid rgba(185, 28, 28, 0.45);
-  color: #fca5a5;
-}
-
-.banter-pill {
-  padding: 5px 13px;
-  border-radius: 99px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px dashed rgba(212, 175, 55, 0.55);
-  color: var(--gd-light);
-}
-
-.mu { color: var(--mu); font-size: 0.9rem; margin: 6px 0; }
-
-/* البطاقات والأسطح */
-.card {
-  background: linear-gradient(180deg, rgba(28, 28, 34, 0.95), rgba(20, 20, 24, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-  border-radius: 14px;
-  padding: 16px;
-  margin: 14px 0;
-}
-
-/* الأزرار التفاعلية */
-button { font: inherit; color: inherit; cursor: pointer; transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
-button:focus-visible, input:focus-visible { outline: 2px solid var(--gd); outline-offset: 2px; }
-button:active:not(:disabled) { transform: scale(0.98); }
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 13px 16px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--sf2);
-  font: 400 1.25rem 'Lalezar', sans-serif;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.btn:hover:not(:disabled) { border-color: rgba(212, 175, 55, 0.4); background: #2a2a32; }
-
-.btn.red {
-  background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
-  border-color: rgba(248, 113, 113, 0.3);
-  color: #fff;
-  box-shadow: 0 6px 20px var(--ac-glow);
-}
-.btn.red:hover:not(:disabled) { filter: brightness(1.08); }
-
-.btn.gold {
-  background: rgba(212, 175, 55, 0.06);
-  border-color: var(--gd);
-  color: var(--gd-light);
-}
-.btn.gold:hover:not(:disabled) { background: rgba(212, 175, 55, 0.14); }
-
-.btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
-/* إعداد الأدوار */
-.rl {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.rl:last-child { border-bottom: none; }
-.rl b { display: block; color: var(--tx); }
-.rl span { font-size: 0.8rem; color: var(--mu); line-height: 1.4; display: block; }
-
-.stp { display: flex; align-items: center; gap: 8px; flex: none; }
-.stp button {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gd);
-  background: rgba(212, 175, 55, 0.06);
-  font-size: 1.3rem;
-  color: var(--gd);
-  line-height: 1;
-}
-.stp button:hover { background: var(--gd); color: #0c0c0e; }
-.stp i { font: 400 1.5rem 'Lalezar', sans-serif; min-width: 28px; text-align: center; font-style: normal; }
-
-.tot { display: flex; justify-content: space-between; align-items: baseline; }
-.big { font-size: 2.7rem; color: var(--gd); text-shadow: 0 0 16px var(--gd-glow); }
-
-.pre { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
-.pre button {
-  padding: 6px 14px;
-  border-radius: 99px;
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  background: rgba(212, 175, 55, 0.06);
-  color: var(--gd-light);
-  font-size: 0.85rem;
-}
-.pre button:hover { background: var(--gd); color: #0c0c0e; }
-
-input[type=text], input[type=password], input:not([type]) {
-  width: 100%;
-  padding: 11px 12px;
-  margin: 4px 0;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0e0e11;
-  color: var(--tx);
-  font: inherit;
-}
-.names { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.chk { display: flex; gap: 8px; align-items: center; margin: 10px 0; cursor: pointer; }
-.chk input { accent-color: var(--gd); width: 18px; height: 18px; }
-
-/* ==========================================================================
-   الميزة الأساسية: طاولة اللاعبين الدائرية التفاعلية (Circular Mafia Table)
-   ========================================================================== */
-.table-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0 6px;
-}
-
-.ctrl-chip {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  background: rgba(22, 22, 26, 0.9);
-  color: var(--gd-light);
-  font-size: 0.82rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.ctrl-chip:hover { border-color: var(--gd); background: rgba(212, 175, 55, 0.12); }
-
-.arena-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  aspect-ratio: 1 / 1;
-  margin: 14px auto 18px;
-  user-select: none;
-}
-
-.mafia-table {
-  position: absolute;
-  inset: 17%;
-  border-radius: 50%;
-  background: var(--table-felt);
-  border: 4px solid #2b231d;
-  box-shadow:
-    inset 0 0 40px rgba(0, 0, 0, 0.9),
-    0 0 0 2px rgba(212, 175, 55, 0.35),
-    0 18px 45px rgba(0, 0, 0, 0.75);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 16px;
-  z-index: 1;
-}
-
-.mafia-table::before {
-  content: '';
-  position: absolute;
-  inset: 10px;
-  border-radius: 50%;
-  border: 1px dashed rgba(212, 175, 55, 0.22);
-  pointer-events: none;
-}
-
-.table-logo {
-  font-family: 'Lalezar', sans-serif;
-  font-size: clamp(1.15rem, 3.8vw, 1.75rem);
-  color: var(--gd);
-  letter-spacing: 1px;
-  line-height: 1.1;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
-}
-
-.table-sub {
-  font-size: clamp(0.68rem, 2.2vw, 0.82rem);
-  color: var(--mu);
-  margin-top: 4px;
-  max-width: 85%;
-}
-
-.table-phase-pill {
-  margin-top: 8px;
-  padding: 2px 10px;
-  border-radius: 99px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: rgba(185, 28, 28, 0.2);
-  border: 1px solid rgba(185, 28, 28, 0.5);
-  color: #fca5a5;
-}
-
-.seat {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  min-width: 78px;
-  max-width: 108px;
-  padding: 7px 8px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, #222228 0%, #151519 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.65);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.2s ease,
-              border-color 0.2s ease,
-              box-shadow 0.2s ease;
-}
-
-.seat:hover:not(:disabled) {
-  transform: translate(-50%, -50%) scale(1.07);
-  border-color: rgba(212, 175, 55, 0.65);
-  z-index: 5;
-}
-
-.seat-num {
-  position: absolute;
-  top: -8px;
-  right: -6px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #111114;
-  border: 1px solid var(--gd);
-  color: var(--gd);
-  font-size: 0.68rem;
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-}
-
-.seat-name {
-  font-family: 'Lalezar', 'Almarai', sans-serif;
-  font-size: clamp(0.88rem, 2.7vw, 1.05rem);
-  line-height: 1.15;
-  color: var(--tx);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.seat-sub {
-  font-size: 0.67rem;
-  color: var(--mu);
-  margin-top: 2px;
-  line-height: 1.1;
-}
-
-.seat.sel {
-  border-color: var(--gd);
-  background: linear-gradient(180deg, #2d2614 0%, #1c180e 100%);
-  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.35), 0 0 22px var(--gd-glow);
-  transform: translate(-50%, -50%) scale(1.08);
-  z-index: 6;
-}
-.seat.sel .seat-name { color: var(--gd-light); }
-
-.seat.out {
-  opacity: 0.36;
-  filter: grayscale(0.85);
-  border-style: dashed;
-  border-color: rgba(185, 28, 28, 0.5);
-  cursor: not-allowed;
-}
-.seat.out .seat-name { text-decoration: line-through; color: #f87171; }
-
-.seat.done {
-  opacity: 0.48;
-  border-color: rgba(21, 128, 61, 0.6);
-}
-
-.seat.silenced {
-  border-color: #ef4444;
-}
-
-@media (max-width: 420px) {
-  .seat {
-    min-width: 64px;
-    max-width: 84px;
-    padding: 5px 5px;
-    border-radius: 10px;
-  }
-  .seat-num { width: 17px; height: 17px; font-size: 0.62rem; top: -6px; right: -4px; }
-  .seat-sub { font-size: 0.6rem; }
-}
-
-/* العرض الشبكي البديل */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-  gap: 10px;
-  margin: 14px 0;
-}
-.pl {
-  padding: 13px 10px;
-  border-radius: 10px;
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  background: var(--sf);
-  font: 400 1.15rem 'Lalezar', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.pl span { font: 400 0.75rem 'Almarai', sans-serif; color: var(--mu); margin-top: 2px; }
-.pl.done { opacity: 0.4; }
-.pl.out { opacity: 0.35; text-decoration: line-through; }
-.pl.sel { border-color: var(--gd); background: rgba(212, 175, 55, 0.12); box-shadow: 0 0 14px var(--gd-glow); }
-
-/* شريط الحالة العلوي داخل المباراة */
-.bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  background: var(--sf);
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  margin-bottom: 10px;
-}
-.bar button {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--gd);
-  background: rgba(212, 175, 55, 0.08);
-  color: var(--gd-light);
-  font-size: 0.88rem;
-}
-.tag { color: var(--gd); font-size: 1.1rem; }
-
-.ann {
-  font-size: 1.05rem;
-  background: rgba(185, 28, 28, 0.1);
-  border-right: 4px solid var(--ac);
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px 0;
-}
-
-.tm { font-size: 3.8rem; text-align: center; color: var(--gd); line-height: 1.15; text-shadow: 0 0 20px var(--gd-glow); }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-/* ==========================================================================
-   بطاقة كشف الدور السري السينمائية (3D Role Reveal Card)
-   ========================================================================== */
-.cd {
-  width: min(76vw, 280px);
-  min-height: 360px;
-  border-radius: 20px;
-  margin: 14px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px 18px;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  touch-action: none;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
-}
-
-.cd.back {
-  background:
-    radial-gradient(circle at 50% 35%, rgba(212, 175, 55, 0.14), transparent 65%),
-    repeating-linear-gradient(45deg, #16161c, #16161c 10px, #1e1e26 10px, #1e1e26 20px);
-  border: 2px solid rgba(212, 175, 55, 0.6);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), inset 0 0 25px rgba(212, 175, 55, 0.08);
-  color: var(--gd-light);
-}
-
-.cd.back::before {
-  content: '';
-  position: absolute;
-  inset: 9px;
-  border-radius: 13px;
-  border: 1px dashed rgba(212, 175, 55, 0.35);
-  pointer-events: none;
-}
-
-.cd-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  margin-bottom: 10px;
-}
-
-/* وجه البطاقة: فريق المواطنين */
-.cd.front-cit {
-  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 75%, #090d16 100%);
-  border: 2.5px solid var(--gd);
-  box-shadow: 0 0 35px rgba(212, 175, 55, 0.35), 0 18px 40px rgba(0, 0, 0, 0.9);
-  color: #f8fafc;
-  transform: scale(1.02);
-}
-.cd.front-cit .cd-team { background: rgba(212, 175, 55, 0.15); color: var(--gd-light); border: 1px solid rgba(212, 175, 55, 0.45); }
-.cd.front-cit .cd-role { color: var(--gd-light); text-shadow: 0 2px 14px rgba(212, 175, 55, 0.4); }
-
-/* وجه البطاقة: فريق المافيا */
-.cd.front-maf {
-  background: radial-gradient(circle at top, #450a0a 0%, #1c0507 75%, #0d0203 100%);
-  border: 2.5px solid #ef4444;
-  box-shadow: 0 0 38px rgba(220, 38, 38, 0.45), 0 18px 40px rgba(0, 0, 0, 0.9);
-  color: #fef2f2;
-  transform: scale(1.02);
-}
-.cd.front-maf .cd-team { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.5); }
-.cd.front-maf .cd-role { color: #f87171; text-shadow: 0 2px 16px rgba(239, 68, 68, 0.5); }
-
-/* وجه البطاقة: محايد (المهرج) */
-.cd.front-neu {
-  background: radial-gradient(circle at top, #3b0764 0%, #1a052e 75%, #0d0217 100%);
-  border: 2.5px solid #c084fc;
-  box-shadow: 0 0 35px rgba(192, 132, 252, 0.35), 0 18px 40px rgba(0, 0, 0, 0.9);
-  color: #faf5ff;
-  transform: scale(1.02);
-}
-.cd.front-neu .cd-team { background: rgba(192, 132, 252, 0.2); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.5); }
-.cd.front-neu .cd-role { color: #d8b4fe; }
-
-.cd-team {
-  font-size: 0.76rem;
-  font-weight: 800;
-  padding: 3px 12px;
-  border-radius: 99px;
-  margin-bottom: 6px;
-}
-
-.cd-role {
-  font: 400 2.3rem 'Lalezar', sans-serif;
-  line-height: 1.1;
-  margin: 2px 0 8px;
-}
-
-.cd-desc {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.cd-allies {
-  margin-top: 12px;
-  padding-top: 8px;
-  border-top: 1px dashed rgba(239, 68, 68, 0.4);
-  font-size: 0.8rem;
-  color: #fca5a5;
-  width: 100%;
-}
-
-/* النوافذ المنبثقة والتنبيهات */
-#modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(6, 6, 8, 0.92);
-  backdrop-filter: blur(6px);
-  z-index: 20;
-  display: none;
-  overflow: auto;
-  padding: calc(20px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px));
-}
-#modal > div {
-  max-width: 460px;
-  margin: auto;
-  background: var(--sf);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-}
-
-#toast {
-  position: fixed;
-  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--ac);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-  display: none;
-  z-index: 30;
-  font-weight: 700;
-}
-
-.lg { font-size: 0.88rem; color: var(--mu); margin: 4px 0; }
-table { width: 100%; border-collapse: collapse; }
-td { padding: 8px 6px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-details { margin: 12px 0; color: var(--mu); font-size: 0.9rem; background: rgba(255,255,255,0.02); padding: 10px 12px; border-radius: 8px; }
-summary { cursor: pointer; color: var(--gd); font-weight: 700; }
-.ft { text-align: center; margin-top: 28px; font: 400 1.1rem 'Lalezar', sans-serif; color: var(--gd); opacity: 0.85; }
 </style>
 </head>
 <body>
 <div class="w" id="app"></div>
 <div id="modal"><div id="mb"></div></div>
 <div id="toast"></div>
-
 <script>
-/* ==========================================================================
-   HAKAM MAFIA — المنطق الأساسي وطاولة اللاعبين الدائرية والبطاقات الاحترافية
-   تطوير: عبد الرحمن محمد ضو
-   ========================================================================== */
-const $ = s => document.querySelector(s);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-// تعريف جميع الأدوار الـ 11 مع الفريق ووقت القدرة والشرح التفصيلي
-const R = {
-  cit: { n: 'مواطن', t: 'فريق المواطنين', w: 'نهاراً أثناء النقاش والتصويت', d: 'صوتك وعقلك هما سلاحك. راقب التناقضات، واكشف المافيا بالتصويت.' },
-  doc: { n: 'الدكتور', t: 'فريق المواطنين', w: 'ليلاً عند نداء الحكم', d: 'كل ليلة تختار لاعباً لحمايته وإنقاذه من رصاص المافيا.' },
-  snp: { n: 'القناص', t: 'فريق المواطنين', w: 'ليلاً (مرة واحدة في اللعبة)', d: 'تملك رصاصة واحدة طوال المباراة: إن أصبت مافيا يموت فوراً، وإن أخطأت تموت أنت!' },
-  inv: { n: 'المحقق', t: 'فريق المواطنين', w: 'ليلاً عند نداء الحكم', d: 'كل ليلة تفحص لاعباً واحداً وتعرف من الحكم إن كان مافيا أم لا.' },
-  grd: { n: 'الحارس', t: 'فريق المواطنين', w: 'ليلاً عند نداء الحكم', d: 'تحرس لاعباً كل ليلة، وإذا استهدفته المافيا تفديه بنفسك وتموت بدلاً منه.' },
-  hnt: { n: 'الصيّاد', t: 'فريق المواطنين', w: 'فوراً عند إقصائك بالتصويت', d: 'إذا أُقصيت بالتصويت في النهار، تطلق رصاصتك الأخيرة على أي لاعب تختاره.' },
-  jok: { n: 'المهرج', t: 'فريق محايد (منفرد)', w: 'طوال النهار (بالخداع والتمثيل)', d: 'هدفك الوحيد أن تقنع الطاولة بالتصويت ضدك وإقصائك نهاراً لتفوز وحدك!' },
-  mf:  { n: 'مافيا', t: 'فريق المافيا', w: 'ليلاً ونهاراً', d: 'عضو في العصابة. نسّق مع زملائك في الليل وضلّل المواطنين في النهار.' },
-  mk:  { n: 'مافيا (قتل)', t: 'فريق المافيا', w: 'ليلاً عند نداء القتل', d: 'تختار ضحية كل ليلة لتصفيتها مع أفراد عصابتك.' },
-  ms:  { n: 'مافيا (إسكات)', t: 'فريق المافيا', w: 'ليلاً عند نداء الإسكات', d: 'تختار لاعباً كل ليلة لإسكاته ومنعه من الكلام طوال النهار التالي.' },
-  mks: { n: 'مافيا (قتل وإسكات)', t: 'فريق المافيا', w: 'ليلاً عند نداء المافيا', d: 'تجمع بين القتل الليلي وإسكات أحد اللاعبين في النهار التالي.' }
-};
+const R={
+cit:{n:'مواطن',d:'ما عندك قدرة. اتكلم، صوّت، وشوف منو المافيا.'},
+may:{n:'العمدة',d:'صوتك في النهار يُحسب بصوتين وقت التصويت.'},
+law:{n:'المحامي',d:'مرة وحدة في اللعبة تحصّن لاعب ضد الإقصاء بالتصويت.'},
+obs:{n:'المراقب',d:'كل ليلة تراقب لاعب وتعرف هل استُهدف ليلاً أم لا.'},
+doc:{n:'الدكتور',d:'كل ليلة تنقذ واحد من القتل.'},
+snp:{n:'القناص',d:'عندك طلقة وحدة طول اللعبة. تصيب مافيا يموت، تغلط تموت انت.'},
+inv:{n:'المحقق',d:'كل ليلة تسأل الحكم على واحد: مافيا ولا لا.'},
+grd:{n:'الحارس',d:'تحمي واحد كل ليلة، وإذا جاه القتل تموت انت بداله.'},
+hnt:{n:'الصيّاد',d:'إذا طلّعوك بالتصويت، تضرب واحد قبل ما تروح.'},
+jok:{n:'المهرج',d:'تغلب إذا الربع صوّتوا عليك وطلّعوك.'},
+mf:{n:'مافيا',d:'مافيا عادي، بلا قدرة. غطّي على ربعك.'},
+mk:{n:'مافيا (قتل)',d:'تقتل واحد كل ليلة.'},
+ms:{n:'مافيا (إسكات)',d:'تسكّت واحد، ما يتكلمش نهار اليوم اللي بعده.'},
+mks:{n:'مافيا (قتل وإسكات)',d:'تقتل وتسكّت.'}};
 
-const GA = ['cit', 'doc', 'snp', 'inv', 'grd', 'hnt', 'jok'];
-const GB = ['mf', 'mk', 'ms', 'mks'];
-const RK = [...GA, ...GB];
+const GA=['cit','may','law','obs','doc','snp','inv','grd','hnt','jok'],GB=['mf','mk','ms','mks'],RK=[...GA,...GB];
+const PRE=[['رزمتك (12)',{cit:7,doc:1,snp:1,mk:1,ms:1,mks:1}],['9 لاعبين',{cit:5,doc:1,snp:1,mk:1,mks:1}],['7 لاعبين',{cit:3,doc:1,snp:1,mk:1,mks:1}]];
 
-const PRE = [
-  ['رزمتك (12)', { cit: 7, doc: 1, snp: 1, mk: 1, ms: 1, mks: 1 }],
-  ['9 لاعبين',   { cit: 5, doc: 1, snp: 1, mk: 1, mks: 1 }],
-  ['7 لاعبين',   { cit: 4, doc: 1, mk: 1, mks: 1 }]
-];
+/* حوارات الراوي الدرامية بأسلوب الجلسات الحماسية */
+const SX={
+kill:['دور المافيا','يا مافيا... افتحوا عيونكم بهدوء. اتفقوا بينكم، واختاروا لاعبًا واحدًا يكون هدف الليلة. خذوا وقتكم، وبعدها غمّضوا عيونكم.'],
+sil:['دور الإسكات','صاحب قدرة الإسكات... افتح عينك وحدد اللاعب اللي تبي تمنعه من الكلام خلال النهار القادم. تم الاختيار؟ ممتاز، غمّض عينك.'],
+doc:['الدكتور يفتح عينيه','يا دكتور... المدينة محتاجة مساعدتك. افتح عينك، وفكّر: من اللاعب اللي تبي تحميه الليلة؟ أشر عليه، وبعدها غمّض عينك.'],
+grd:['الحارس يفتح عينيه','يا حارس المدينة... افتح عينك. اختار لاعبًا واحدًا تحميه الليلة، ولو وصل له الخطر تكون أنت في طريقه. تم؟ غمّض عينك.'],
+obs:['المراقب يفتح عينيه','يا مراقب... افتح عينك وحدد شخصًا تراقبه. الحكم سيخبرك إن كان أحد قد استهدفه أو اقترب منه هذه الليلة.'],
+inv:['المحقق يفتح عينيه','يا محقق... حان وقت كشف الحقيقة. افتح عينك، واختر لاعبًا تشك في أمره. ستعرف الآن إن كان من المافيا أم لا.'],
+snp:['القناص يفتح عينيه','يا قناص... هذه فرصتك، لكن تذكّر: لديك طلقة واحدة فقط. اختر هدفك بحذر، أو احتفظ بها لليلة أخرى.']};
 
-const SX = {
-  kill: ['المافيا تفتح عيونها (القتل)', 'منو نقتلو الليلة؟'],
-  sil:  ['المافيا تفتح عيونها (الإسكات)', 'منو نسكّتو بكرة؟'],
-  doc:  ['الدكتور يفتح عينيه', 'منو تنقذ؟'],
-  grd:  ['الحارس يفتح عينيه', 'منو تحمي؟'],
-  inv:  ['المحقق يفتح عينيه', 'على منو تشك؟'],
-  snp:  ['القناص يفتح عينيه', 'على منو تضرب؟ ولا تخلّي الرصاصة؟']
-};
+const isM=r=>r[0]=='m';
+const lc=()=>{try{return JSON.parse(localStorage.getItem('mafia.c'))}catch(e){return null}};
+let D={c:lc()||{...PRE[0][1]},names:[],pin:'',rev:1};
+try{const savedSetup=JSON.parse(localStorage.getItem('mafia.setup')||'null');if(savedSetup&&typeof savedSetup==='object')D={...D,...savedSetup,c:{...D.c,...(savedSetup.c||{})}}}catch(e){}
+const saveSetup=()=>{try{const safe={...D,pin:''};localStorage.setItem('mafia.setup',JSON.stringify(safe));localStorage.setItem('mafia.c',JSON.stringify(D.c))}catch(e){}};
+let G=null,V='setup',timer=null,left=0,sel=null,U=[],lastNarr='';
+const tot=()=>RK.reduce((a,k)=>a+(D.c[k]||0),0),mc=()=>GB.reduce((a,k)=>a+(D.c[k]||0),0);
 
-const isM = r => r[0] === 'm';
-const lc = () => { try { return JSON.parse(localStorage.getItem('mafia.c')); } catch (e) { return null; } };
-const ln = () => { try { return JSON.parse(localStorage.getItem('mafia.names')) || []; } catch (e) { return []; } };
-
-let D = { c: lc() || { ...PRE[0][1] }, names: ln(), pin: '', rev: 1 };
-let G = null;
-let V = 'setup';
-let timer = null;
-let left = 0;
-let sel = null;
-
-// إعدادات عرض الطاولة الدائرية والصوت
-let viewMode = 'circle';
-let seatOffset = 0;
-let soundOn = true;
-
-// محرك صوتي سينمائي خفيف (Web Audio API) بدون أي ملفات خارجية
-function playTone(freq = 440, dur = 0.12, type = 'sine', vol = 0.08) {
-  if (!soundOn) return;
-  try {
-    const ctx = window._ac || (window._ac = new (window.AudioContext || window.webkitAudioContext)());
-    if (ctx.state === 'suspended') ctx.resume();
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.type = type;
-    o.frequency.value = freq;
-    g.gain.setValueAtTime(vol, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-    o.connect(g);
-    g.connect(ctx.destination);
-    o.start();
-    o.stop(ctx.currentTime + dur);
-  } catch (e) {}
-}
-
-function toggleSound() {
-  soundOn = !soundOn;
-  toast(soundOn ? 'تم تفعيل المؤثرات الصوتية 🔊' : 'تم كتم الصوت 🔇');
-  render();
-}
-
-const tot = () => RK.reduce((a, k) => a + (D.c[k] || 0), 0);
-const mc = () => GB.reduce((a, k) => a + (D.c[k] || 0), 0);
-
-function rnd(n) {
-  const a = new Uint32Array(1), lim = 4294967296 - 4294967296 % n;
-  let x;
-  do { crypto.getRandomValues(a); x = a[0]; } while (x >= lim);
-  return x % n;
-}
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = rnd(i + 1);
-    [a[i], a[j]] = [a[j], a[i]];
+/* ---------- خلط الأوراق ---------- */
+function rnd(n){
+  if(!Number.isInteger(n)||n<=1)return 0;
+  if(window.crypto&&crypto.getRandomValues){
+    const a=new Uint32Array(1),limit=Math.floor(4294967296/n)*n;
+    let x;do{crypto.getRandomValues(a);x=a[0]}while(x>=limit);
+    return x%n;
   }
-  return a;
+  return Math.floor(Math.random()*n);
 }
-async function H(s) {
-  try {
-    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('mafia:' + s));
-    return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
-  } catch (e) { return s; }
-}
-
-const st = () => { try { return JSON.parse(localStorage.getItem('mafia.st')) || { g: 0, m: 0, c: 0 }; } catch (e) { return { g: 0, m: 0, c: 0 }; } };
-const sv = () => { try { localStorage.setItem('mafia.g', JSON.stringify({ G, V })); } catch (e) {} };
-const ld = () => { try { return JSON.parse(localStorage.getItem('mafia.g')); } catch (e) { return null; } };
-
-function toast(t) {
-  const e = $('#toast');
-  e.textContent = t;
-  e.style.display = 'block';
-  clearTimeout(window._tt);
-  window._tt = setTimeout(() => e.style.display = 'none', 2500);
-}
-function M(h) { $('#mb').innerHTML = h; $('#modal').style.display = 'block'; }
-function cm() { $('#modal').style.display = 'none'; $('#mb').innerHTML = ''; }
-function wake() { try { navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); } catch (e) {} }
-
-// إغلاق البطاقة السرية تلقائياً إذا غادر اللاعب التطبيق لحماية الخصوصية
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden && $('#cd')) sh(0);
-});
-
-function render() {
-  if (timer && !(G && G.phase === 'day')) { clearInterval(timer); timer = null; }
-  V === 'setup' ? setup() : V === 'deal' ? deal() : ({ night, day, hunt, end })[G.phase]();
+function shuffle(a){
+  const arr=a.slice();
+  for(let i=arr.length-1;i>0;i--){const j=rnd(i+1);[arr[i],arr[j]]=[arr[j],arr[i]]}
+  return arr;
 }
 
-/* ==========================================================================
-   موسوعة دليل الأدوار وميثاق الجلسة
-   ========================================================================== */
-function openGuide() {
-  const items = RK.map(k => {
-    const r = R[k];
-    const color = isM(k) ? '#f87171' : k === 'jok' ? '#d8b4fe' : 'var(--gd-light)';
-    return `
-      <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07)">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <b style="color:${color};font-size:1.05rem">${r.n}</b>
-          <span style="font-size:0.75rem;color:var(--mu)">${r.t}</span>
-        </div>
-        <div style="font-size:0.83rem;color:var(--tx);margin-top:3px">${r.d}</div>
-        <div style="font-size:0.74rem;color:var(--gd);margin-top:2px">⏱ وقت القدرة: ${r.w}</div>
-      </div>
-    `;
-  }).join('');
+async function H(s){if(!window.crypto||!crypto.subtle||!crypto.subtle.digest)throw new Error('Secure hashing is unavailable');const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('mafia:'+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const st=()=>{try{return JSON.parse(localStorage.getItem('mafia.st'))||{g:0,m:0,c:0}}catch(e){return{g:0,m:0,c:0}}};
+const sv=()=>{try{localStorage.setItem('mafia.g',JSON.stringify({G,V}))}catch(e){}};
+const ld=()=>{try{return JSON.parse(localStorage.getItem('mafia.g'))}catch(e){return null}};
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',2600)}
+function M(h){$('#mb').innerHTML=h;$('#modal').style.display='block'}
+function cm(){$('#modal').style.display='none';$('#mb').innerHTML=''}
+function wake(){try{navigator.wakeLock&&navigator.wakeLock.request('screen').catch(()=>{})}catch(e){}}
 
-  M(`
-    <h3>موسوعة الأدوار وميثاق الجلسة</h3>
-    <div style="background:rgba(185,28,28,0.12);border:1px solid rgba(185,28,28,0.4);border-radius:10px;padding:10px;margin-bottom:8px">
-      <div style="color:#fca5a5;font-weight:800;font-size:0.9rem">🚫 القانون الأساسي: ممنوع الحَلَف</div>
-      <div style="color:var(--mu);font-size:0.8rem">يُمنع الحلف بالله أو بأي مقدسات لإثبات البراءة. اللعب يعتمد على الإقناع والذكاء.</div>
+function applyMood(){
+  document.body.classList.remove('mood-night','mood-day');
+  if(!G||V=='setup'||V=='deal'||G.phase=='end')return;
+  if(G.phase=='night')document.body.classList.add('mood-night');
+  else document.body.classList.add('mood-day');
+}
+
+function render(){
+  if(timer&&!(G&&(G.phase=='day'||G.phase=='lw'))){clearInterval(timer);timer=null}
+  applyMood();
+  V=='card'?cardView():V=='stats'?stats():V=='guide'?guide():V=='setup'?setup():V=='deal'?deal():({night,day,hunt,end,vote:vsheet,lw})[G.phase]();
+}
+
+/* ---------- setup ---------- */
+function cnt(k,d){const v=Math.max(0,(D.c[k]||0)+d);if(d>0&&tot()>=20)return toast('الحد الأقصى 20 لاعب');D.c[k]=v;saveSetup();setup()}
+const row=k=>`<div class="rl"><div><b>${R[k].n}</b><span>${R[k].d}</span></div><div class="stp"><button aria-label="نقّص ${R[k].n}" onclick="cnt('${k}',-1)">−</button><i>${D.c[k]||0}</i><button aria-label="زيّد ${R[k].n}" onclick="cnt('${k}',1)">+</button></div></div>`;
+
+function homeHero(){
+  return `<header class="home-hero" aria-label="واجهة حَكَم مافيا">
+    <div class="hero-topbar">
+      <button class="hero-action" type="button" onclick="audioPanel()">الصوت </button>
+      <button class="hero-action" type="button" onclick="go('guide')">دليل الأدوار والقوانين</button>
     </div>
-    <div style="background:rgba(212,175,55,0.08);border:1px dashed rgba(212,175,55,0.45);border-radius:10px;padding:10px;margin-bottom:10px">
-      <div style="color:var(--gd-light);font-weight:800;font-size:0.9rem"> شعار الجلسة: «إذا سكّت روحك مش راجل!»</div>
-      <div style="color:var(--mu);font-size:0.8rem">كلام رجال لتحفيز النقاش وكسر الصمت — تكلّم، دافع عن نفسك، ولا تختبئ!</div>
+    <div class="hero-kicker">STREET MAFIA EDITION</div>
+    <h1 class="hero-title">HAKAM MAFIA</h1>
+    <p class="hero-subtitle">حَكَم المافيا — الجلسة الاحترافية في جوالك</p>
+    <div class="hero-credit">إعداد وتطوير: عبدالرحمن محمد ضو</div>
+    <div class="hero-mottos">
+      <span class="hero-motto red">قانون أساسي: ممنوع الحلف عن قول مثلا: والله انا مواطن او مافيا</span>
+      <span class="hero-motto gold">كان سكت روحك انت مش راجل ومعندكش ال**!</span>
     </div>
-    <div style="max-height:52vh;overflow:auto;padding-left:4px">${items}</div>
-    <button class="btn gold" onclick="cm()">إغلاق الدليل</button>
-  `);
+    <p class="hero-lead">جوال واحد يدير الطاولة الدائرية. يوزّع الأدوار بسرية تامة، ويحكم الليل والنهار.</p>
+  </header>`;
 }
 
-/* ==========================================================================
-   مكوّن الطاولة الدائرية التفاعلية (Circular Table Engine)
-   ========================================================================== */
-function rotateSeats(dir = 1) {
-  if (!G) return;
-  seatOffset = (seatOffset + dir + G.n) % G.n;
-  playTone(320, 0.06, 'triangle', 0.05);
-  render();
+function setup(){
+  const r=ld(),s=st(),n=tot();
+  const vs=getArabicVoices();
+  $('#app').innerHTML=`${homeHero()}
+${r&&r.G&&r.V!='setup'&&r.G.phase!='end'?`<button class="btn gold" onclick="resume()">كمّل اللعبة اللي فاتت</button>`:''}
+<div class="card"><div class="tot"><h3>الورق في هالجولة</h3><span class="big">${n}</span></div><p class="mu">المجموع هو عدد اللاعبين، وكل ما تزيد ورقة يزيد لاعب.</p>
+<div class="pre">${PRE.map((p,i)=>`<button onclick="D.c={...PRE[${i}][1]};saveSetup();setup()">${p[0]}</button>`).join('')}<button onclick="sug()">اقتراح الحكم (حسب العدد)</button></div>
+<h3 style="margin-top:12px">جهة المواطنين</h3>${GA.map(row).join('')}
+<h3 style="margin-top:12px">جهة المافيا</h3>${GB.map(row).join('')}
+<p class="mu">المافيا ${mc()} · الباقي ${n-mc()}</p></div>
+<div class="card"><h3>الطاولة</h3>${tbl(Array.from({length:n},(_,i)=>(D.names[i]||'').trim()||'لاعب '+(i+1)),()=>({}))}<p class="mu">المقاعد تتوزّع تلقائي كل ما تزيد لاعب ولا تنقص.</p></div>
+<div class="card"><h3>أسامي الربع</h3><datalist id="pn">${[...new Set(hist().flatMap(g=>g.p.map(x=>x[0])))].map(n=>`<option value="${esc(n)}">`).join('')}</datalist><div class="names">${Array.from({length:n},(_,i)=>`<input value="${esc(D.names[i]||'')}" placeholder="لاعب ${i+1}" maxlength="14" list="pn" oninput="D.names[${i}]=this.value;saveSetup()">`).join('')}</div></div>
+<div class="card"><h3>رمز الحكم (إذا تبي)</h3><input inputmode="numeric" maxlength="4" placeholder="4 أرقام" value="${esc(D.pin)}" oninput="D.pin=this.value;saveSetup()"><p class="mu">يحمي لوحة الأدوار أثناء الجولة. لا تستخدم رقمًا مهمًا أو كلمة مرور تستعملها في مكان آخر؛ الرمز لا يُحفظ ضمن إعدادات الأسماء.</p>
+<label class="chk"><input type="checkbox" ${D.rev?'checked':''} onchange="D.rev=this.checked?1:0;saveSetup()"> نكشفو دور اللي يخرج من اللعبة</label></div>
+<div class="card"><h3>الراوي الصوتي والإعدادات <span class="badge">إلقاء حواري</span></h3><p class="mu">سرد عربي حواري بإيقاع متغيّر ووقفات طبيعية وتصاعد درامي. جودة الصوت تعتمد على الأصوات العربية المتاحة في جهازك؛ لا يوجد استنساخ لصوت شخص بعينه.</p>
+<label class="chk"><input type="checkbox" ${S.snd?'checked':''} onchange="ss('snd',this.checked?1:0);beep('on')"> مؤثرات صوتية للمراحل والتنبيهات</label>
+<label class="chk"><input type="checkbox" ${S.nar?'checked':''} onchange="ss('nar',this.checked?1:0);if(this.checked)testNarrator()"> تفعيل الراوي الصوتي الدرامي</label>
+${vs.length?`<div class="rl"><b>نبرة / صوت الجهاز</b><select onchange="ss('vUri',this.value);testNarrator()"><option value="">تلقائي (أفضل صوت عربي)</option>${vs.map(v=>`<option value="${esc(v.voiceURI)}" ${S.vUri===v.voiceURI?'selected':''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('')}</select></div>`:'<p class="mu" style="color:#e7a1a8">لم يظهر صوت عربي بعد. جرّب زر «الصوت» أعلى الصفحة ثم «إعادة فحص الأصوات». إذا بقيت القائمة فارغة، ثبّت صوت تحويل النص إلى كلام بالعربية في Windows.</p>'}
+<div class="rl"><b>أسلوب الإلقاء</b><select onchange="ss('tone',this.value);testNarrator()"><option value="adnan" ${S.tone=='adnan'?'selected':''}>حواري حماسي (سرد يوتيوبي)</option><option value="dramatic" ${S.tone=='dramatic'?'selected':''}>غامض وهادئ</option><option value="fast" ${S.tone=='fast'?'selected':''}>سريع ومباشر</option></select></div>
+<label class="mu">سرعة الإلقاء (${S.rate}) <input type="range" min="0.75" max="1.25" step="0.05" value="${S.rate}" onchange="ss('rate',+this.value);render()"></label>
+<label class="mu">مستوى الصوت (${Math.round(S.vol*100)}%) <input type="range" min="0" max="1" step=".1" value="${S.vol}" onchange="ss('vol',+this.value);beep('on');render()"></label>
+<button class="btn gold" type="button" onclick="testNarrator()">🔊 جرّب صوت الراوي الآن</button>
+<label class="chk"><input type="checkbox" ${S.lw?'checked':''} onchange="ss('lw',this.checked?1:0)"> كلمة أخيرة 30 ثانية للي يخرج</label>
+<div class="two"><label class="mu">وقت النقاش (ثانية)<input type="number" min="30" max="600" step="10" value="${S.disc}" onchange="ss('disc',Math.max(30,Math.min(600,+this.value||120)));render()"></label><label class="mu">وقت المتكلم (ثانية)<input type="number" min="10" max="180" step="5" value="${S.spk}" onchange="ss('spk',Math.max(10,Math.min(180,+this.value||45)));render()"></label></div></div>
+<details><summary>القواعد في هالنسخة</summary><p>الليل يمشي بالترتيب: المافيا تقتل ثم تسكّت، الدكتور ينقذ، الحارس يحمي، المراقب يراقب، المحقق يسأل، القناص يضرب. المحامي يحمي من الإقصاء بالتصويت مرة واحدة، والعمدة صوته يحسب بصوتين. المافيا تغلب لما يتساوى عددها مع الباقي، والربع يغلبو لما تخلص المافيا.</p></details>
+<button class="btn red" onclick="startGame()">اخلط ووزّع الورق</button>
+<p class="lg">على جوالك: ${s.g} لعبة · المافيا غلبت ${s.m} · الربع غلبو ${s.c}</p>
+<div class="two"><button class="btn gold" onclick="go('stats')">الإحصائيات</button><button class="btn gold" onclick="go('guide')">دليل الأدوار</button></div>
+<div class="ft">HAKAM MAFIA · الإصدار المحسّن<br>صنع عبدالرحمن محمد ضو</div>`;
 }
 
-function toggleTableMode() {
-  viewMode = viewMode === 'circle' ? 'grid' : 'circle';
-  render();
+function testNarrator(){
+  unlockAudio();
+  S.nar=1;ss('nar',1);
+  const line='يا أهلاً وسهلاً بكم في ليلة جديدة من مافيا الشارع... الكل يغمض عيونه، واللعبة تبدأ الآن!';
+  say(line,{mood:'adnan',force:true});
+  setTimeout(refreshAudioStatus,300);
 }
 
-function renderPlayersArena(options) {
-  const { mode, selectedIndex, onSelectFnName, centerTitle, centerSub, phaseLabel } = options;
-  const playerCount = G.n;
-
-  const controlsHtml = `
-    <div class="table-controls">
-      <button type="button" class="ctrl-chip" onclick="toggleTableMode()">
-        ${viewMode === 'circle' ? '☷ عرض شبكي' : '◯ الطاولة الدائرية'}
-      </button>
-      ${viewMode === 'circle' ? `
-        <div style="display:flex;gap:6px">
-          <button type="button" class="ctrl-chip" onclick="rotateSeats(-1)">↻ تدوير</button>
-          <button type="button" class="ctrl-chip" onclick="rotateSeats(1)">↺</button>
-        </div>
-      ` : ''}
-    </div>
-  `;
-
-  if (viewMode === 'grid') {
-    const cards = G.names.map((name, i) => {
-      const isAlive = !!G.alive[i];
-      const isDealt = G.dealt.includes(i);
-      const isSel = selectedIndex === i;
-      let disabled = false;
-      let subText = `#${i + 1}`;
-      let extraClass = '';
-
-      if (mode === 'deal') {
-        disabled = isDealt;
-        subText = isDealt ? 'استلم ورقته ✓' : 'اضغط لاستلام الورقة';
-        if (isDealt) extraClass = 'done';
-      } else {
-        disabled = !isAlive;
-        if (!isAlive) {
-          extraClass = 'out';
-          subText = 'مستبعد';
-        } else if (mode === 'day' && i === G.sil) {
-          subText = 'متسكّت 🤐';
-        } else {
-          subText = `مقعد ${i + 1}`;
-        }
-      }
-
-      return `
-        <button type="button" class="pl ${extraClass} ${isSel ? 'sel' : ''}"
-          ${disabled ? 'disabled' : ''}
-          onclick="${onSelectFnName}(${i})">
-          ${esc(name)}
-          <span>${subText}</span>
-        </button>
-      `;
-    }).join('');
-
-    return controlsHtml + `<div class="grid">${cards}</div>`;
-  }
-
-  const centerX = 50;
-  const centerY = 50;
-  const radiusX = playerCount > 12 ? 41.5 : 40;
-  const radiusY = playerCount > 12 ? 41.5 : 40;
-
-  const seatsHtml = G.names.map((name, i) => {
-    const visualIndex = (i + seatOffset) % playerCount;
-    const angle = (2 * Math.PI * visualIndex) / playerCount - (Math.PI / 2);
-    const x = centerX + radiusX * Math.cos(angle);
-    const y = centerY + radiusY * Math.sin(angle);
-
-    const isAlive = !!G.alive[i];
-    const isDealt = G.dealt.includes(i);
-    const isSel = selectedIndex === i;
-
-    let disabled = false;
-    let statusClass = '';
-    let subLabel = '';
-
-    if (mode === 'deal') {
-      disabled = isDealt;
-      statusClass = isDealt ? 'done' : '';
-      subLabel = isDealt ? 'تم ✓' : 'ورقتك';
-    } else {
-      disabled = !isAlive;
-      if (!isAlive) {
-        statusClass = 'out';
-        subLabel = 'خارج';
-      } else if (mode === 'day' && i === G.sil) {
-        statusClass = 'silenced';
-        subLabel = 'متسكّت';
-      } else {
-        subLabel = isSel ? 'مُختار ★' : '';
-      }
-    }
-
-    return `
-      <button type="button"
-        class="seat ${statusClass} ${isSel ? 'sel' : ''}"
-        style="left:${x.toFixed(2)}%; top:${y.toFixed(2)}%;"
-        ${disabled ? 'disabled' : ''}
-        onclick="${onSelectFnName}(${i})"
-        aria-label="مقعد ${i + 1}: ${esc(name)}">
-        <span class="seat-num">${i + 1}</span>
-        <span class="seat-name">${esc(name)}</span>
-        ${subLabel ? `<span class="seat-sub">${subLabel}</span>` : ''}
-      </button>
-    `;
-  }).join('');
-
-  return `
-    ${controlsHtml}
-    <div class="arena-wrap">
-      <div class="mafia-table">
-        <div class="table-logo">${esc(centerTitle || 'HAKAM MAFIA')}</div>
-        <div class="table-sub">${esc(centerSub || 'مافيا الشارع')}</div>
-        ${phaseLabel ? `<div class="table-phase-pill">${esc(phaseLabel)}</div>` : ''}
-      </div>
-      ${seatsHtml}
-    </div>
-  `;
-}
-
-/* ==========================================================================
-   1. شاشة الإعداد (Setup)
-   ========================================================================== */
-function cnt(k, d) {
-  const v = Math.max(0, (D.c[k] || 0) + d);
-  if (d > 0 && tot() >= 20) return toast('الحد الأقصى 20 لاعب');
-  D.c[k] = v;
-  setup();
-}
-
-function shuffleNamesList() {
-  const n = tot();
-  const filled = Array.from({ length: n }, (_, i) => (D.names[i] || '').trim() || `لاعب ${i + 1}`);
-  D.names = shuffle(filled);
-  toast('تم خلط أماكن اللاعبين عشوائياً 🎲');
-  setup();
-}
-
-const row = k => `
-  <div class="rl">
-    <div><b>${R[k].n}</b><span>${R[k].d}</span></div>
-    <div class="stp">
-      <button type="button" aria-label="نقّص ${R[k].n}" onclick="cnt('${k}',-1)">−</button>
-      <i>${D.c[k] || 0}</i>
-      <button type="button" aria-label="زيّد ${R[k].n}" onclick="cnt('${k}',1)">+</button>
-    </div>
-  </div>
-`;
-
-function setup() {
-  const r = ld(), s = st(), n = tot();
-  $('#app').innerHTML = `
-    <div class="fl"></div>
-    <div class="top-nav">
-      <button type="button" class="ctrl-chip" onclick="openGuide()"> دليل الأدوار والقوانين</button>
-      <button type="button" class="ctrl-chip" onclick="toggleSound()">${soundOn ? '🔊 الصوت' : '🔇 صامت'}</button>
-    </div>
-
-    <div class="hero-header">
-      <div class="brand-badge">STREET MAFIA EDITION</div>
-      <h1>HAKAM MAFIA<small>حَكَم المافيا — الجلسة الاحترافية في جوالك</small></h1>
-      <div class="stp0">إعداد وتطوير: عبد الرحمن محمد ضو</div>
-      <div class="street-rules-box">
-        <span class="rule-pill"> قانون أساسي: ممنوع الحَلَف</span>
-        <span class="banter-pill"> إذا سكّت روحك مش راجل!</span>
-      </div>
-    </div>
-
-    <p class="mu" style="text-align:center">جوال واحد يدير الطاولة الدائرية، يوزّع الأدوار بسرية تامة، ويحكم الليل والنهار.</p>
-    ${r && r.G && r.V !== 'setup' && r.G.phase !== 'end' ? `<button class="btn gold" onclick="resume()">استكمال المباراة الجارية</button>` : ''}
-
-    <div class="card">
-      <div class="tot"><h3>تشكيلة الورق في الجولة</h3><span class="big">${n}</span></div>
-      <p class="mu">إجمالي الورق يحدد عدد المقاعد حول الطاولة الدائرية.</p>
-      <div class="pre">${PRE.map((p, i) => `<button type="button" onclick="D.c={...PRE[${i}][1]};setup()">${p[0]}</button>`).join('')}</div>
-      <h3 style="margin-top:14px">فريق المواطنين</h3>
-      ${GA.map(row).join('')}
-      <h3 style="margin-top:14px">فريق المافيا</h3>
-      ${GB.map(row).join('')}
-      <p class="mu" style="margin-top:10px">المافيا: <b style="color:#f87171">${mc()}</b> · المواطنين والمحايدين: <b style="color:var(--gd)">${n - mc()}</b></p>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <h3 style="margin:0">أسماء اللاعبين والمقاعد</h3>
-        <button type="button" class="ctrl-chip" onclick="shuffleNamesList()">🎲 خلط المقاعد</button>
-      </div>
-      <div class="names">
-        ${Array.from({ length: n }, (_, i) => `<input value="${esc(D.names[i] || '')}" placeholder="مقعد ${i + 1}" maxlength="14" oninput="D.names[${i}]=this.value">`).join('')}
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>رمز حماية الحكم (اختياري)</h3>
-      <input inputmode="numeric" maxlength="4" placeholder="4 أرقام لحماية لوحة الأدوار" value="${esc(D.pin)}" oninput="D.pin=this.value">
-      <p class="mu">يُشفّر محلياً على جهازك لمنع كشف الأدوار أثناء اللعب.</p>
-      <label class="chk">
-        <input type="checkbox" ${D.rev ? 'checked' : ''} onchange="D.rev=this.checked?1:0">
-        كشف دور اللاعب عند خروجه من الطاولة
-      </label>
-    </div>
-
-    <details>
-      <summary>قواعد اللعب وميثاق الجلسة</summary>
-      <p>• <b>قانون أساسي: ممنوع الحَلَف</b> منعاً باتاً لإثبات البراءة.<br>
-      • <b>شعار الجلسة:</b> «إذا سكّت روحك مش راجل!» — النقاش مفتوح للجميع.<br>
-      • الليل يمشي بالترتيب: المافيا تقتل ثم تسكّت، الدكتور ينقذ، الحارس يحمي، المحقق يسأل، القناص يضرب. المافيا تفوز عند تساوي عددها مع الباقين، والمواطنون يفوزون بالقضاء على المافيا.</p>
-    </details>
-
-    <button class="btn red" onclick="startGame()">ابدأ الجلسة ووزّع الورق</button>
-    <p class="lg" style="text-align:center">سجل الجهاز: ${s.g} مباراة · فوز المافيا: ${s.m} · فوز المواطنين: ${s.c}</p>
-    <div class="ft">HAKAM MAFIA — عبد الرحمن محمد ضو</div>
-  `;
-}
-
-async function startGame() {
-  const n = tot(), m = mc();
-  if (n < 4) return toast('الحد الأدنى 4 لاعبين');
-  if (!m) return toast('يجب وجود مافيا واحد على الأقل');
-  if (m >= n - m) return toast('يجب أن يكون عدد الباقين أكثر من المافيا');
-  if (D.pin && !/^\d{4}$/.test(D.pin)) return toast('رمز الحكم يجب أن يكون 4 أرقام');
-  try {
-    localStorage.setItem('mafia.c', JSON.stringify(D.c));
-    localStorage.setItem('mafia.names', JSON.stringify(D.names.slice(0, n)));
-  } catch (e) {}
-
-  const roles = shuffle(RK.flatMap(k => Array(D.c[k] || 0).fill(k)));
-  G = {
-    n,
-    names: Array.from({ length: n }, (_, i) => (D.names[i] || '').trim() || 'لاعب ' + (i + 1)),
-    roles,
-    dealt: [],
-    alive: roles.map(() => 1),
-    sil: -1,
-    round: 1,
-    used: 0,
-    log: [],
-    t0: Date.now(),
-    pin: D.pin ? await H(D.pin) : '',
-    rev: D.rev,
-    phase: 'night',
-    N: {},
-    s: 0,
-    ann: '',
-    win: '',
-    vt: null
+async function startGame(){
+  unlockAudio();
+  const n=tot(),m=mc();
+  if(n<4)return toast('الأقل 4 لاعبين');
+  if(!m)return toast('لازم مافيا واحد على الأقل');
+  if(!(D.c.mk||D.c.mks))return toast('أضف دور مافيا قادر على القتل (مافيا قتل أو قتل وإسكات)');
+  if(m>=n-m)return toast('لازم الباقي يكونو أكثر من المافيا');
+  if(n>20)return toast('الحد الأقصى 20 لاعبًا');
+  if(D.pin&&!/^\d{4}$/.test(D.pin))return toast('الرمز لازم 4 أرقام');
+  if(D.pin&&(!window.crypto||!crypto.subtle))return toast('حماية الرمز تحتاج متصفحًا يدعم التشفير؛ افتح اللعبة عبر HTTPS أو اترك الرمز فارغًا');
+  saveSetup()
+  const rawRoles=RK.flatMap(k=>Array(D.c[k]||0).fill(k));
+  const roles=shuffle(rawRoles);
+  G={
+    n,rot:rnd(n),qr:0,cur:-1,lv:n>14&&innerWidth<500,
+    names:Array.from({length:n},(_,i)=>(D.names[i]||'').trim()||'لاعب '+(i+1)),
+    roles,dealt:[],alive:roles.map(()=>1),sil:-1,lawUsed:0,
+    round:1,used:0,log:[],events:[],t0:Date.now(),
+    pin:D.pin?await H(D.pin):'',rev:D.rev,phase:'night',N:{},s:0,ann:'',win:'',vt:null
   };
-  seatOffset = 0;
-  viewMode = (window.innerWidth < 360 && n > 14) ? 'grid' : 'circle';
-  V = 'deal';
-  playTone(520, 0.18, 'triangle', 0.1);
-  wake();
-  sv();
-  render();
+  U.length=0;V='deal';wake();sv();toast('تم خلط الأوراق بعشوائية عالية');render();
 }
+function resume(){unlockAudio();const r=ld();if(!r||!r.G||!r.G.roles||!Array.isArray(r.G.roles)||!r.G.phase){toast('لا توجد جلسة محفوظة صالحة');return}G=r.G;V=r.V||'game';wake();render()}
 
-function resume() {
-  const r = ld();
-  G = r.G;
-  V = r.V;
-  wake();
-  render();
+/* ---------- الطاولة الدائرية ---------- */
+function tbl(nm,f,rot=0){
+  const n=nm.length,R=.34,w=n<2?20:Math.max(9,Math.min(20,2*R*Math.sin(Math.PI/n)*92)),tiny=w<12.5;
+  return`<div class="tb${tiny?' tiny':''}"><div class="lg0">HAKAM<br>MAFIA</div>${nm.map((s,i)=>{
+    const o=f(i),an=2*Math.PI*((i+rot)%n)/n-Math.PI/2,tg=o.a?'button':'div';
+    return`<${tg} ${o.a?`onclick="${o.a}"`:''} class="st ${o.c||''}" style="--w:${w.toFixed(1)};left:${(50+R*100*Math.cos(an)).toFixed(1)}%;top:${(50+R*100*Math.sin(an)).toFixed(1)}%"><b>${i+1}</b><span>${esc(s)}${o.t?`<em>${o.t}</em>`:''}</span></${tg}>`;
+  }).join('')}</div>`+(tiny?`<p class="lg">${nm.map((s,i)=>`${i+1} ${esc(s)}`).join(' · ')}</p>`:'');
 }
-
-/* ==========================================================================
-   2. توزيع الورق السري حول الطاولة مع البطاقة السينمائية (Deal Phase)
-   ========================================================================== */
-function deal() {
-  const k = G.dealt.length;
-  $('#app').innerHTML = `
-    <div class="fl"></div>
-    <div class="top-nav">
-      <button type="button" class="ctrl-chip" onclick="openGuide()">📖 دليل الأدوار</button>
-      <button type="button" class="ctrl-chip" onclick="toggleSound()">${soundOn ? '🔊 الصوت' : '🔇 صامت'}</button>
-    </div>
-    <h2>توزيع الأدوار السري</h2>
-    <p class="mu">اضغط على مقعدك حول الطاولة، ثم اضغط مطوّلاً على البطاقة لرؤية دورك سراً ومرّر الجهاز.</p>
-
-    ${renderPlayersArena({
-      mode: 'deal',
-      selectedIndex: null,
-      onSelectFnName: 'peek',
-      centerTitle: 'HAKAM MAFIA',
-      centerSub: `استلم الورق: ${k} من ${G.n}`,
-      phaseLabel: 'مرحلة التوزيع'
-    })}
-
-    ${k === G.n
-      ? `<button class="btn red" onclick="startNight()">الجميع جاهز — ابدأ الليلة الأولى</button>`
-      : `<p class="mu" style="text-align:center">بانتظار استلام ${G.n - k} لاعبين لأدوارهم</p>`}
-  `;
+function T(act,s,done,lk=1){
+  const dn=i=>done&&done(i),
+  cl=i=>(G.alive[i]?'':'dead ')+(dn(i)?'done ':'')+(s===i?'sel ':'')+(G.sil===i?'sil ':'')+(G.cur===i&&(G.phase=='day'||G.phase=='lw')?'cur ':''),
+  ac=i=>G.alive[i]&&!(dn(i)&&lk)?act(i):'',
+  tg=`<button class="btn gold" onclick="G.lv=!G.lv;render()">${G.lv?'عرض الطاولة':'عرض قائمة'}</button>`;
+  if(G.lv)return`<div class="grid">${G.names.map((n,i)=>{const a=ac(i),t=a?'button':'div';return`<${t} ${a?`onclick="${a}"`:''} class="pl ${cl(i)}">${esc(n)}${G.sil===i?'<span>متسكّت</span>':''}</${t}>`}).join('')}</div>`+tg;
+  return tbl(G.names,i=>({c:cl(i),a:ac(i),t:G.sil===i?'متسكّت':''}),G.rot||0)+tg;
 }
+function rot(d){G.rot=((G.rot||0)+d+G.n)%G.n;sv();deal()}
 
-function getCardBackHtml() {
-  return `
-    <div class="cd-icon" style="border:1.5px solid var(--gd);background:rgba(212,175,55,0.08)">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-      </svg>
-    </div>
-    <div style="font:400 1.45rem 'Lalezar',sans-serif;letter-spacing:0.5px">HAKAM MAFIA</div>
-    <div style="font-size:0.85rem;color:var(--mu);margin-top:6px">اضغط مطوّلاً هنا لكشف بطاقتك</div>
-  `;
+/* ---------- توزيع الورق ---------- */
+function deal(){
+  const k=G.dealt.length,online=/^https?:\/\//i.test(location.href);
+  if(!online)G.qr=0;
+  $('#app').innerHTML=`<div class="fl"></div><h2>توزيع الورق</h2><p class="mu">اضغط على مقعدك، ثم اضغط مطولًا على البطاقة لكشف دورك. تأكد أن الشاشة لا يراها بقية اللاعبين.</p>
+${T(i=>`peek(${i})`,null,i=>G.dealt.includes(i),!G.qr)}<div class="two"><button class="btn gold" onclick="rot(1)">دوّر الجلسة</button>${online?`<button class="btn gold" onclick="G.qr=G.qr?0:1;sv();deal()">${G.qr?'توزيع بتمرير الجوال':'توزيع بـ QR'}</button>`:`<button class="btn gold" onclick="toast('ميزة QR تتطلب فتح اللعبة من رابط HTTPS منشور')">معلومة QR</button>`}</div>${G.qr?'<p class="mu">كل لاعب يمسح الرمز من هاتفه لفتح بطاقته. من يحصل على الرابط يستطيع رؤية الدور، لذلك لا تعرض الرمز إلا لصاحبه.</p>':!online?'<p class="mu">التوزيع بتمرير الهاتف يعمل دون إنترنت. لفتح بطاقة QR على هاتف آخر، انشر اللعبة أولًا على رابط HTTPS.</p>':''}
+${k==G.n?`<button class="btn red" onclick="startNight()">ابدأ الليلة الأولى</button>`:`<p class="mu">${k} من ${G.n} استلموا أوراقهم</p>`}`;
 }
-
-function peek(i) {
-  const roleKey = G.roles[i];
-  const r = R[roleKey];
-  const mafiaFlag = isM(roleKey);
-  const jokerFlag = roleKey === 'jok';
-
-  // إذا كان اللاعب من المافيا، نجهز له أسماء شركائه في العصابة
-  const allies = mafiaFlag
-    ? G.names.filter((_, idx) => idx !== i && isM(G.roles[idx]))
-    : [];
-
-  window._cardState = { roleKey, r, mafiaFlag, jokerFlag, allies };
-
-  M(`
-    <p class="mu" style="text-align:center;margin-bottom:4px">مقعد #${i + 1} — <b style="color:var(--gd)">${esc(G.names[i])}</b></p>
-    <div id="cd" class="cd back"
-      onpointerdown="sh(1)" onpointerup="sh(0)" onpointerleave="sh(0)" onpointercancel="sh(0)"
-      oncontextmenu="return false">
-      ${getCardBackHtml()}
-    </div>
-    <p class="mu" style="text-align:center;font-size:0.78rem">تُخفى البطاقة تلقائياً بمجرد رفع إصبعك</p>
-    <button class="btn gold" onclick="fin(${i})">حفظت دوري — مرّر الجهاز</button>
-  `);
+function peek(i){
+  if(G.qr)return qrm(i);window._r=R[G.roles[i]];
+  M(`<p class="mu" style="text-align:center">${esc(G.names[i])}</p>
+<div id="cd" class="cd back" onpointerdown="sh(1)" onpointerup="sh(0)" onpointerleave="sh(0)" onpointercancel="sh(0)" oncontextmenu="return false"><span id="cf">دوس مطوّل تشوف دورك</span></div>
+<button class="btn" onclick="fin(${i})">خلاص — سلّم الجوال</button>`);
 }
+function sh(v){const c=$('#cd');if(!c)return;const r=window._r;c.className='cd '+(v?'front':'back');c.innerHTML=v?`<b>${r.n}</b><small>${r.d}</small>`:'<span id="cf">دوس مطوّل تشوف دورك</span>'}
+function fin(i){if(!G.dealt.includes(i))G.dealt.push(i);cm();sv();deal()}
+function startNight(){unlockAudio();V='game';nightInit();render()}
 
-function sh(v) {
-  const c = $('#cd');
-  if (!c || !window._cardState) return;
-  const { r, mafiaFlag, jokerFlag, allies } = window._cardState;
+/* ---------- الليل ---------- */
+const al=()=>G.names.map((_,i)=>i).filter(i=>G.alive[i]);
+function nightInit(){
+  G.phase='night';G.N={};G.s=0;sel=null;beep('night');
+  sayOnce('n'+G.round,`حلّت الليلة ${G.round} على المدينة.. الكل يغمض عيونه، لا صوت ولا حركة.`,{mood:'adnan'});
+  const s=[],h=f=>G.roles.some((r,i)=>G.alive[i]&&f(r));
+  if(h(r=>r=='mk'||r=='mks'))s.push('kill');
+  if(h(r=>r=='ms'||r=='mks'))s.push('sil');
+  ['doc','grd','obs','inv'].forEach(k=>h(r=>r==k)&&s.push(k));
+  if(h(r=>r=='snp')&&!G.used)s.push('snp');
+  G.steps=s;sv();
+}
+const narBar=()=>`<div class="nar-box"><span>🎙️ الراوي: ${S.nar?'شغّال':'مكتوم'}</span><div class="acts"><button onclick="repeatNar()">أعد الصوت</button><button onclick="toggleNar()">${S.nar?'كتم':'تشغيل'}</button></div></div>`;
+const bar=()=>`<div class="fl"></div><div class="bar"><span class="tag">الجولة ${G.round} · باقي ${al().length}</span><div class="acts"><button onclick="undo()">تراجع</button><button onclick="panel()">لوحة الحكم</button></div></div>`;
 
-  if (!v) {
-    c.className = 'cd back';
-    c.innerHTML = getCardBackHtml();
+function night(){
+  const k=G.steps[G.s];
+  if(!k){
+    sayOnce('e'+G.round,'انتهت تحركات الليل.. الكل مغمض، واستعدوا لطلوع الفجر!',{mood:'adnan'});
+    $('#app').innerHTML=bar()+narBar()+`<h2>الليل خلص</h2><p class="mu">الكل لسا مغمّض عيونه. كي تكون جاهز، قلّهم يفتّحو.</p><button class="btn red" onclick="dawn()">طلّع الفجر</button>`;
     return;
   }
-
-  try { navigator.vibrate && navigator.vibrate(35); } catch (e) {}
-  playTone(mafiaFlag ? 190 : 520, 0.14, mafiaFlag ? 'sawtooth' : 'sine', 0.06);
-
-  const themeClass = mafiaFlag ? 'front-maf' : jokerFlag ? 'front-neu' : 'front-cit';
-  const iconSvg = mafiaFlag
-    ? `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`
-    : jokerFlag
-      ? `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#d8b4fe" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`
-      : `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f3d56b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
-
-  const alliesHtml = mafiaFlag
-    ? `<div class="cd-allies">🤝 شركاؤك في العصابة: <b>${allies.length ? allies.map(esc).join('، ') : 'أنت وحدك'}</b></div>`
-    : `<div style="margin-top:10px;font-size:0.75rem;color:var(--gd-light);opacity:0.85">⏱ ${r.w}</div>`;
-
-  c.className = 'cd ' + themeClass;
-  c.innerHTML = `
-    <div class="cd-icon" style="background:rgba(255,255,255,0.06)">${iconSvg}</div>
-    <span class="cd-team">${r.t}</span>
-    <div class="cd-role">${r.n}</div>
-    <div class="cd-desc">${r.d}</div>
-    ${alliesHtml}
-  `;
+  const t=SX[k];
+  sayOnce(G.round+'.'+G.s,t[1],{mood:'adnan'});
+  $('#app').innerHTML=bar()+narBar()+`<h2>${t[0]}</h2><p class="ann">${t[1]}</p>
+${T(i=>`sel=${i};night()`,sel)}
+<button class="btn red" ${sel==null?'disabled':''} onclick="nx(sel)">تمام — يغمّض عينيه</button>
+<button class="btn gold" onclick="nx(null)">${k=='snp'?'يخلّي الرصاصة':'ما حد'}</button>`;
 }
 
-function fin(i) {
-  if (!G.dealt.includes(i)) G.dealt.push(i);
-  cm();
-  sv();
-  deal();
-}
-
-function startNight() {
-  V = 'game';
-  playTone(220, 0.25, 'sine', 0.08);
-  nightInit();
-  render();
-}
-
-/* ==========================================================================
-   3. إدارة مرحلة الليل (Night Phase)
-   ========================================================================== */
-const al = () => G.names.map((_, i) => i).filter(i => G.alive[i]);
-
-function nightInit() {
-  G.phase = 'night';
-  G.N = {};
-  G.s = 0;
-  sel = null;
-  const s = [], h = f => G.roles.some((r, i) => G.alive[i] && f(r));
-  if (h(r => r === 'mk' || r === 'mks')) s.push('kill');
-  if (h(r => r === 'ms' || r === 'mks')) s.push('sil');
-  ['doc', 'grd', 'inv'].forEach(k => h(r => r === k) && s.push(k));
-  if (h(r => r === 'snp') && !G.used) s.push('snp');
-  G.steps = s;
-  sv();
-}
-
-const bar = () => `
-  <div class="fl"></div>
-  <div class="bar">
-    <span class="tag">الجولة ${G.round} · على الطاولة: ${al().length}</span>
-    <div style="display:flex;gap:6px">
-      <button type="button" onclick="openGuide()" title="دليل الأدوار">📖</button>
-      <button type="button" onclick="panel()">لوحة الحكم</button>
-    </div>
-  </div>
-`;
-
-function selectNightTarget(i) {
-  sel = i;
-  playTone(380, 0.05, 'sine', 0.04);
-  night();
-}
-
-function night() {
-  const k = G.steps[G.s];
-  if (!k) {
-    $('#app').innerHTML = bar() + `
-      <h2>انتهت أحداث الليل</h2>
-      <p class="mu">الجميع لا يزال مغمض العينين. عندما تكون مستعداً أعلن طلوع الفجر.</p>
-      <button class="btn red" onclick="dawn()">إعلان طلوع الفجر</button>
-    `;
+function nx(v){
+  snap();const k=G.steps[G.s];G.N[k]=v;G.s++;sel=null;sv();
+  if(k=='inv'&&v!=null){
+    const m=isM(G.roles[v]);
+    M(`<h2>${esc(G.names[v])}</h2><p class="ann">${m?'مافيا. ارفع إبهامك لفوق للمحقق.':'مو مافيا. نزّل إبهامك للمحقق.'}</p><button class="btn red" onclick="cm();night()">خلاص</button>`);
     return;
   }
-
-  const t = SX[k];
-  $('#app').innerHTML = bar() + `
-    <h2>${t[0]}</h2>
-    <p class="ann">${t[1]}</p>
-
-    ${renderPlayersArena({
-      mode: 'night',
-      selectedIndex: sel,
-      onSelectFnName: 'selectNightTarget',
-      centerTitle: 'ليل المدينة',
-      centerSub: t[0],
-      phaseLabel: `الجولة ${G.round}`
-    })}
-
-    <button class="btn red" ${sel == null ? 'disabled' : ''} onclick="nx(sel)">تأكيد الاختيار — يغمّض عينيه</button>
-    <button class="btn gold" onclick="nx(null)">${k === 'snp' ? 'الاحتفاظ بالرصاصة' : 'تخطّي / لا أحد'}</button>
-  `;
-}
-
-function nx(v) {
-  const k = G.steps[G.s];
-  G.N[k] = v;
-  G.s++;
-  sel = null;
-  sv();
-
-  if (k === 'inv' && v != null) {
-    const m = isM(G.roles[v]);
-    M(`
-      <h2>نتيجة التحقيق: ${esc(G.names[v])}</h2>
-      <p class="ann">${m ? 'مافيا! أشر للمحقق بإبهامك للأعلى.' : 'ليس مافيا. أشر للمحقق بإبهامك للأسفل.'}</p>
-      <button class="btn red" onclick="cm();night()">فهمت — متابعة الليل</button>
-    `);
+  if(k=='obs'&&v!=null){
+    const targeted=(G.N.kill===v)||(G.N.sil===v)||(G.N.doc===v)||(G.N.grd===v);
+    M(`<h2>مراقبة ${esc(G.names[v])}</h2><p class="ann">${targeted?'نعم، تم استهدافه أو لمسه ليلاً. أومئ للمراقب.':'لا، لم يقترب منه أحد هذه الليلة.'}</p><button class="btn red" onclick="cm();night()">خلاص</button>`);
     return;
   }
   night();
 }
 
-function dawn() {
-  playTone(620, 0.25, 'triangle', 0.09);
-  const N = G.N;
-  let d = [];
-  if (N.kill != null && N.kill !== N.doc) {
-    const g = N.kill === N.grd ? G.roles.findIndex((r, i) => r === 'grd' && G.alive[i]) : -1;
-    d.push(g >= 0 ? g : N.kill);
+function dawn(){
+  snap();const N=G.N;let d=[];
+  if(N.kill!=null&&N.kill!==N.doc){
+    const g=N.kill===N.grd?G.roles.findIndex((r,i)=>r=='grd'&&G.alive[i]):-1;
+    d.push(g>=0?g:N.kill);
   }
-  if (N.snp != null) {
-    G.used = 1;
-    const si = G.roles.findIndex((r, i) => r === 'snp' && G.alive[i]);
-    if (isM(G.roles[N.snp])) d.push(N.snp);
-    else if (si >= 0) d.push(si);
+  if(N.snp!=null){
+    G.used=1;const si=G.roles.findIndex((r,i)=>r=='snp'&&G.alive[i]);
+    if(isM(G.roles[N.snp]))d.push(N.snp);else if(si>=0)d.push(si);
   }
-  d = [...new Set(d)];
-  d.forEach(i => G.alive[i] = 0);
-  G.sil = N.sil != null && G.alive[N.sil] ? N.sil : -1;
-  G.ann = (d.length ? `ضحايا الليلة: ${nm(d)}.` : 'مرّت الليلة بسلام، لم يمت أحد.')
-    + (G.sil >= 0 ? ` ${G.names[G.sil]} ممنوع من الكلام طوال النهار.` : '');
+  d=[...new Set(d)];d.forEach(i=>G.alive[i]=0);
+  G.sil=N.sil!=null&&G.alive[N.sil]?N.sil:-1;
+  G.ann=(d.length?`طاح الليلة: ${nm(d)}.`:'ليلة عدّت بسلام، ما مات حد.')+(G.sil>=0?` ${G.names[G.sil]} متسكّت طول النهار.`:'');
   G.log.push(`الجولة ${G.round} — ${G.ann}`);
+  G.events.push({r:G.round,type:'dawn',dead:d.slice(),sil:G.sil});
+  beep('dawn');
+  const speechDawn=d.length
+    ?`افتحوا عيونكم.. طلعت الشمس على خبر صادم! ${G.ann}`
+    :`افتحوا عيونكم.. صباح الخير يا أهل المدينة، ليلة عدّت بسلام وما خسرنا حد!${G.sil>=0?` لكن ${G.names[G.sil]} ممنوع من الكلام اليوم!`:''}`;
+  say(speechDawn,{mood:'adnan'});
+  if(!chk()){G.phase='day';left=S.disc;G.vt=null;G.cur=-1;sv();render()}
+}
+const nm=a=>a.map(i=>G.names[i]+(G.rev?` (${R[G.roles[i]].n})`:'')).join('، ');
+function chk(){
+  const m=G.roles.filter((r,i)=>G.alive[i]&&isM(r)).length,c=G.roles.filter((r,i)=>G.alive[i]&&!isM(r)).length;
+  if(!m)return finish('cit');if(m>=c)return finish('maf');return false;
+}
+function nextRound(){G.round++;G.sil=-1;G.cur=-1;nightInit();render()}
 
-  if (!chk()) {
-    G.phase = 'day';
-    left = 120;
-    G.vt = null;
-    sv();
-    render();
+/* ---------- النهار ---------- */
+function day(){
+  $('#app').innerHTML=bar()+narBar()+`<h2>النهار</h2><p class="ann">${esc(G.ann)}</p>
+<div class="card"><div class="tm" id="tm"></div><div class="two"><button class="btn" id="tb" onclick="tgl()">${timer?'وقّف':'ابدأ النقاش'}</button><button class="btn gold" onclick="left=S.disc;tm()">من الأول</button></div><button class="btn gold" onclick="nxt()">المتكلم التالي (${S.spk} ث)</button>${G.cur>=0?`<p class="ann">المتكلم: ${esc(G.names[G.cur])}</p>`:''}</div>
+<h3>التصويت</h3>${T(i=>`G.vt=${i};day()`,G.vt)}
+<button class="btn red" onclick="vstart()">سجّل الأصوات</button><button class="btn" ${G.vt==null?'disabled':''} onclick="vote(G.vt)">إقصاء مباشر (بدون تصويت)</button>
+<button class="btn gold" onclick="vote(-1)">ما حد يخرج اليوم</button>`;tm();
+}
+function tm(){const e=$('#tm');if(e)e.textContent=Math.floor(left/60)+':'+String(Math.max(left,0)%60).padStart(2,'0')}
+function tgl(){
+  const b=$('#tb');
+  if(timer){clearInterval(timer);timer=null;b.textContent='كمّل'}
+  else{
+    b.textContent='وقّف';
+    timer=setInterval(()=>{
+      left--;tm();
+      if(left<=0){clearInterval(timer);timer=null;b.textContent='خلص الوقت';beep('tick');say('انتهى الوقت! حان وقت القرار.',{mood:'adnan'});try{navigator.vibrate(600)}catch(e){}}
+    },1000);
   }
 }
 
-const nm = a => a.map(i => G.names[i] + (G.rev ? ` (${R[G.roles[i]].n})` : '')).join('، ');
-
-function chk() {
-  const m = G.roles.filter((r, i) => G.alive[i] && isM(r)).length;
-  const c = G.roles.filter((r, i) => G.alive[i] && !isM(r)).length;
-  if (!m) return finish('cit');
-  if (m >= c) return finish('maf');
-  return false;
-}
-
-function nextRound() {
-  G.round++;
-  G.sil = -1;
-  playTone(220, 0.2, 'sine', 0.08);
-  nightInit();
-  render();
-}
-
-/* ==========================================================================
-   4. إدارة مرحلة النهار والتصويت (Day & Voting Phase)
-   ========================================================================== */
-function selectVoteTarget(i) {
-  G.vt = i;
-  playTone(380, 0.05, 'sine', 0.04);
-  day();
-}
-
-function day() {
-  $('#app').innerHTML = bar() + `
-    <h2>نهار النقاش والتصويت</h2>
-    <div class="street-rules-box" style="justify-content:flex-start;margin:4px 0 8px">
-      <span class="rule-pill">🚫 ممنوع الحَلَف</span>
-      <span class="banter-pill">🔥 إذا سكّت روحك مش راجل!</span>
-    </div>
-    <p class="ann">${esc(G.ann)}</p>
-
-    <div class="card">
-      <div class="tm" id="tm"></div>
-      <div class="two">
-        <button class="btn" id="tb" onclick="tgl()">ابدأ المؤقت</button>
-        <button class="btn gold" onclick="left=120;tm()">إعادة ضبط</button>
-      </div>
-    </div>
-
-    <h3>طاولة التصويت — اختر المشتبه به</h3>
-    ${renderPlayersArena({
-      mode: 'day',
-      selectedIndex: G.vt,
-      onSelectFnName: 'selectVoteTarget',
-      centerTitle: 'التصويت العام',
-      centerSub: G.vt != null ? `المستهدف: ${G.names[G.vt]}` : 'اضغط على مقعد للتصويت',
-      phaseLabel: `نهار الجولة ${G.round}`
-    })}
-
-    <button class="btn red" ${G.vt == null ? 'disabled' : ''} onclick="vote(G.vt)">تأكيد إقصاء اللاعب</button>
-    <button class="btn gold" onclick="vote(-1)">تخطّي التصويت (لا أحد يخرج)</button>
-  `;
-  tm();
-}
-
-function tm() {
-  const e = $('#tm');
-  if (e) e.textContent = Math.floor(left / 60) + ':' + String(Math.max(left, 0) % 60).padStart(2, '0');
-}
-
-function tgl() {
-  const b = $('#tb');
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-    b.textContent = 'استئناف';
-  } else {
-    b.textContent = 'إيقاف مؤقت';
-    timer = setInterval(() => {
-      left--;
-      tm();
-      if (left <= 0) {
-        clearInterval(timer);
-        timer = null;
-        b.textContent = 'انتهى الوقت';
-        playTone(300, 0.4, 'sawtooth', 0.1);
-        try { navigator.vibrate(600); } catch (e) {}
-      }
-    }, 1000);
-  }
-}
-
-function vote(i) {
-  if (timer) { clearInterval(timer); timer = null; }
-  if (i < 0) {
-    G.log.push(`الجولة ${G.round} — لم يخرج أحد بالتصويت`);
+function vote(i){
+  if(i>=0&&!G.alive[i])return toast('هذا اللاعب خرج من اللعبة بالفعل');
+  snap();G.vs=null;if(timer){clearInterval(timer);timer=null}
+  if(i<0){
+    G.log.push(`الجولة ${G.round} — ما حد خرج`);
+    say('انتهى التصويت ولم يخرج أحد اليوم.. التوتر يزداد في المدينة.',{mood:'adnan'});
     return nextRound();
   }
-  G.alive[i] = 0;
-  const r = G.roles[i];
-  G.log.push(`الجولة ${G.round} — أُقصي بالتصويت: ${nm([i])}`);
-  if (r === 'jok') { G.jn = i; return finish('jok'); }
-  if (r === 'hnt' && al().length > 1) {
-    G.phase = 'hunt';
-    sel = null;
-    sv();
-    return render();
+  const hasLaw=!G.lawUsed&&G.roles.some((r,idx)=>G.alive[idx]&&r=='law');
+  if(hasLaw){
+    M(`<h3>قدرة المحامي</h3><p class="ann">هل يتدخل المحامي ويحصّن <b>${esc(G.names[i])}</b> من الإقصاء هذه المرة؟</p><button class="btn red" onclick="cm();useLawyer(${i})">نعم — حصّنه (تُستخدم مرة واحدة)</button><button class="btn gold" onclick="cm();proceedElim(${i})">لا — يخرج</button>`);
+    return;
   }
-  if (!chk()) nextRound();
+  proceedElim(i);
+}
+function useLawyer(i){
+  G.lawUsed=1;
+  G.log.push(`الجولة ${G.round} — المحامي تدخّل وأنقذ ${G.names[i]} من الإقصاء`);
+  say(`مفاجأة! المحامي يتدخل في اللحظة الأخيرة وينقذ ${G.names[i]} من الإقصاء!`,{mood:'adnan'});
+  nextRound();
+}
+function proceedElim(i){
+  G.alive[i]=0;beep('out');const r=G.roles[i];
+  const line=`الجولة ${G.round} — طلّعوا ${nm([i])}`;
+  G.log.push(line);
+  G.events.push({r:G.round,type:'vote',out:i,role:r});
+  say(`قررت المدينة إقصاء ${G.names[i]}${G.rev?`.. واللي طلع دوره ${R[r].n}!`:'!'}`,{mood:'adnan'});
+  if(r=='jok'){G.jn=i;return finish('jok')}
+  if(r=='hnt'&&al().length>1){G.phase='hunt';sel=null;sv();return render()}
+  if(!chk())S.lw?lastw(i):nextRound();
 }
 
-function selectHuntTarget(i) {
-  sel = i;
-  hunt();
+function hunt(){
+  $('#app').innerHTML=bar()+narBar()+`<h2>الصيّاد يرد الطلقة</h2><p class="ann">قبل ما يروح، على منو يضرب؟</p>
+${T(i=>`sel=${i};hunt()`,sel)}
+<button class="btn red" ${sel==null?'disabled':''} onclick="shoot(sel)">اضرب</button><button class="btn gold" onclick="shoot(null)">ما يضرب حد</button>`;
 }
-
-function hunt() {
-  $('#app').innerHTML = bar() + `
-    <h2>الطلقة الأخيرة للصيّاد</h2>
-    <p class="ann">قبل مغادرة الطاولة، على من يطلق الصيّاد رصاصته؟</p>
-
-    ${renderPlayersArena({
-      mode: 'hunt',
-      selectedIndex: sel,
-      onSelectFnName: 'selectHuntTarget',
-      centerTitle: 'انتقام الصيّاد',
-      centerSub: 'اختر هدفاً من الطاولة',
-      phaseLabel: 'قدرة خاصة'
-    })}
-
-    <button class="btn red" ${sel == null ? 'disabled' : ''} onclick="shoot(sel)">إطلاق النار</button>
-    <button class="btn gold" onclick="shoot(null)">عدم إطلاق النار</button>
-  `;
-}
-
-function shoot(v) {
-  if (v != null) {
-    G.alive[v] = 0;
-    G.log.push(`الجولة ${G.round} — الصيّاد أردى ${nm([v])}`);
+function shoot(v){
+  snap();
+  if(v!=null){
+    G.alive[v]=0;
+    G.log.push(`الجولة ${G.round} — الصيّاد ضرب ${nm([v])}`);
+    say(`الصيّاد لا يرحل وحيداً! أطلق رصاصته الأخيرة وأسقط ${G.names[v]}!`,{mood:'adnan'});
   }
-  if (!chk()) nextRound();
+  if(!chk())nextRound();
 }
 
-/* ==========================================================================
-   5. نهاية المباراة ولوحة الحكم المحمية (End & Referee Panel)
-   ========================================================================== */
-function finish(w) {
-  G.phase = 'end';
-  G.win = w;
-  playTone(w === 'maf' ? 180 : 660, 0.35, 'triangle', 0.1);
-  try {
-    const s = st();
-    s.g++;
-    w === 'maf' ? s.m++ : w === 'cit' && s.c++;
-    localStorage.setItem('mafia.st', JSON.stringify(s));
-  } catch (e) {}
-  sv();
-  render();
-  return true;
+/* ---------- النهاية ---------- */
+function finish(w){
+  G.phase='end';G.win=w;
+  const dur=Math.max(1,Math.round((Date.now()-G.t0)/60000));
+  const titleMap={maf:['المافيا غلبت','الشارع صار لهم'],cit:['الربع غلبو المافيا','المدينة نظيفة'],jok:['المهرج ضحك عليكم',G.names[G.jn]+' طلّعوه بالتصويت']}[w];
+  try{const s=st();s.g++;w=='maf'?s.m++:w=='cit'&&s.c++;localStorage.setItem('mafia.st',JSON.stringify(s))}catch(e){}
+  try{
+    const h=hist();
+    h.push({
+      t:Date.now(),n:G.n,w,r:G.round,m:dur,
+      p:G.names.map((x,i)=>[x,G.roles[i],G.alive[i],G.sil===i?1:0])
+    });
+    localStorage.setItem('mafia.h',JSON.stringify(h.slice(-200)));
+  }catch(e){}
+  beep('win');
+  say(`انتهت الحكاية! ${titleMap[0]}.. ${titleMap[1]}!`,{mood:'adnan'});
+  sv();render();return true;
 }
 
-function end() {
-  const w = G.win;
-  const T = {
-    maf: ['انتصرت المافيا', 'الشارع أصبح تحت سيطرتهم'],
-    cit: ['انتصر المواطنون', 'تم تطهير المدينة بنجاح'],
-    jok: ['انتصر المهرج', G.names[G.jn] + ' خدع الجميع وأُقصي بالتصويت']
-  }[w];
+function end(){
+  const w=G.win,T={maf:['المافيا غلبت','الشارع صار لهم'],cit:['الربع غلبو المافيا','المدينة نظيفة'],jok:['المهرج ضحك عليكم',G.names[G.jn]+' طلّعوه بالتصويت']}[w];
+  $('#app').innerHTML=`<div class="fl"></div><h1>${T[0]}<small>${T[1]} · ${G.round} جولات · ${Math.max(1,Math.round((Date.now()-G.t0)/60000))} دقيقة</small></h1>
+<div class="card"><h3>الأدوار والنتائج</h3><table>${G.names.map((n,i)=>`<tr><td>${esc(n)}</td><td>${R[G.roles[i]].n}</td><td>${G.alive[i]?'نجا':'خرج'}</td></tr>`).join('')}</table></div>
+<div class="card"><h3>سجل الأحداث</h3>${G.log.map(l=>`<p class="lg">${esc(l)}</p>`).join('')}</div>
+<button class="btn gold" onclick="undo()">تراجع عن آخر خطوة</button><button class="btn red" onclick="newGame()">جولة جديدة</button><div class="ft">HAKAM MAFIA · الإصدار المحسّن<br>صنع عبدالرحمن محمد ضو</div>`;
+}
+function newGame(){U.length=0;G=null;V='setup';try{localStorage.removeItem('mafia.g')}catch(e){}cm();render()}
 
-  $('#app').innerHTML = `
-    <div class="fl"></div>
-    <div class="hero-header">
-      <div class="brand-badge">نهاية الجلسة</div>
-      <h1>${T[0]}<small>${T[1]} · ${G.round} جولات · ${Math.max(1, Math.round((Date.now() - G.t0) / 60000))} دقيقة</small></h1>
-    </div>
+/* ---------- لوحة الحكم ---------- */
+function panel(){G.pin?M(`<h3>لوحة الحكم</h3><p class="mu">دخّل الرمز.</p><input id="pp" inputmode="numeric" maxlength="4" placeholder="4 أرقام"><button class="btn red" onclick="unlock()">افتح</button><button class="btn" onclick="cm()">سكّر</button>`):showP()}
+async function unlock(){try{if(await H($('#pp').value)===G.pin)showP();else toast('الرمز غلط')}catch(e){toast('تعذّر التحقق من الرمز في هذا المتصفح')}}
+function showP(){M(`<h3>لوحة الحكم</h3><div class="card"><table>${G.names.map((n,i)=>`<tr style="${G.alive[i]?'':'opacity:.45'}"><td>${esc(n)}</td><td>${R[G.roles[i]].n}</td><td>${G.alive[i]?'عايش':'خرج'}</td></tr>`).join('')}</table></div><div class="card"><h3>شن صار</h3>${G.log.length?G.log.map(l=>`<p class="lg">${esc(l)}</p>`).join(''):'<p class="lg">لسا ما صار شي.</p>'}</div><button class="btn" onclick="cm()">سكّر</button><button class="btn gold" onclick="cm();go('guide')">دليل الأدوار</button><button class="btn gold" onclick="if(confirm('تبي تنهي اللعبة؟'))newGame()">أنهي اللعبة</button>`)}
 
-    <div class="card">
-      <h3>كشف أوراق الطاولة</h3>
-      <table>
-        ${G.names.map((n, i) => `
-          <tr>
-            <td><b>#${i + 1}</b> ${esc(n)}</td>
-            <td style="color:${isM(G.roles[i]) ? '#f87171' : 'var(--gd)'}">${R[G.roles[i]].n}</td>
-            <td>${G.alive[i] ? '<span style="color:#4ade80">على قيد الحياة</span>' : '<span style="color:#f87171">مستبعد</span>'}</td>
-          </tr>
-        `).join('')}
-      </table>
-    </div>
+/* ---------- QR مُحسّن مع منطقة هادئة وعمل دون إنترنت عبر رابط مدمج ---------- */
+const QE=[10,16,26,18,24,16,18,22,22,26],QB=[1,1,1,2,2,4,4,4,5,5];
+const gm=(x,y)=>{let z=0;for(let i=7;i>=0;i--){z=(z<<1)^((z>>>7)*285);z^=((y>>>i)&1)*x}return z};
+function qr(txt){const by=[...new TextEncoder().encode(txt)],raw=q=>{let r=(16*q+128)*q+64;if(q>1){const a=Math.floor(q/7)+2;r-=(25*a-10)*a-55;if(q>6)r-=36}return r>>3};
+let v=1,cap;for(;v<=10;v++){cap=raw(v)-QE[v-1]*QB[v-1];if(4+(v<10?8:16)+8*by.length<=cap*8)break}
+if(v>10)return null;
+const bits=[],put=(x,k)=>{for(let i=k-1;i>=0;i--)bits.push((x>>>i)&1)};
+put(4,4);put(by.length,v<10?8:16);by.forEach(b=>put(b,8));put(0,Math.min(4,cap*8-bits.length));
+while(bits.length%8)bits.push(0);for(let p=236;bits.length<cap*8;p^=253)put(p,8);
+const dat=[];for(let i=0;i<bits.length;i+=8)dat.push(parseInt(bits.slice(i,i+8).join(''),2));
+const ne=QE[v-1],nb=QB[v-1],tot=raw(v),ns=nb-tot%nb,sl=Math.floor(tot/nb),gen=Array(ne).fill(0);gen[ne-1]=1;
+for(let i=0,r=1;i<ne;i++){for(let j=0;j<ne;j++){gen[j]=gm(gen[j],r);if(j+1<ne)gen[j]^=gen[j+1]}r=gm(r,2)}
+const blk=[];for(let i=0,k=0;i<nb;i++){const d=dat.slice(k,k+sl-ne+(i<ns?0:1));k+=d.length;const rem=gen.map(()=>0);
+d.forEach(b=>{const f=b^rem.shift();rem.push(0);gen.forEach((c,j)=>rem[j]^=gm(c,f))});if(i<ns)d.push(0);blk.push(d.concat(rem))}
+const out=[];for(let i=0;i<blk[0].length;i++)blk.forEach((b,j)=>{if(i!=sl-ne||j>=ns)out.push(b[i])});
+const n=17+4*v,m=Array.from({length:n},()=>Array(n).fill(0)),fn=Array.from({length:n},()=>Array(n).fill(0)),sf=(x,y,d)=>{m[y][x]=d?1:0;fn[y][x]=1};
+for(let i=0;i<n;i++){sf(6,i,i%2==0);sf(i,6,i%2==0)}
+[[3,3],[n-4,3],[3,n-4]].forEach(([cx,cy])=>{for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const x=cx+dx,y=cy+dy,d=Math.max(Math.abs(dx),Math.abs(dy));if(x>=0&&x<n&&y>=0&&y<n)sf(x,y,d!=2&&d!=4)}});
+const ap=[];if(v>1){const na=Math.floor(v/7)+2,st=Math.ceil((v*4+4)/(na*2-2))*2;ap.push(6);for(let p=n-7;ap.length<na;p-=st)ap.splice(1,0,p)}
+ap.forEach((a,i)=>ap.forEach((b,j)=>{if((!i&&!j)||(!i&&j==ap.length-1)||(i==ap.length-1&&!j))return;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++)sf(a+dx,b+dy,Math.max(Math.abs(dx),Math.abs(dy))!=1)}));
+const fmt=k=>{let r=k;for(let i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);const b=((k<<10)|r)^0x5412,g=i=>(b>>>i)&1;
+for(let i=0;i<=5;i++)sf(8,i,g(i));sf(8,7,g(6));sf(8,8,g(7));sf(7,8,g(8));for(let i=9;i<15;i++)sf(14-i,8,g(i));
+for(let i=0;i<8;i++)sf(n-1-i,8,g(i));for(let i=8;i<15;i++)sf(8,n-15+i,g(i));sf(8,n-8,1)};
+if(v>=7){let r=v;for(let i=0;i<12;i++)r=(r<<1)^((r>>>11)*0x1F25);const b=(v<<12)|r;for(let i=0;i<18;i++){const d=(b>>>i)&1,a=n-11+i%3,c=Math.floor(i/3);sf(a,c,d);sf(c,a,d)}}
+fmt(0);
+for(let i=0,right=n-1;right>=1;right-=2){if(right==6)right=5;for(let vt=0;vt<n;vt++)for(let j=0;j<2;j++){const x=right-j,y=((right+1)&2)==0?n-1-vt:vt;if(!fn[y][x]&&i<out.length*8){m[y][x]=(out[i>>>3]>>>(7-(i&7)))&1;i++}}}
+const mf=[(x,y)=>(x+y)%2==0,(x,y)=>y%2==0,(x,y)=>x%3==0,(x,y)=>(x+y)%3==0,(x,y)=>(Math.floor(x/3)+Math.floor(y/2))%2==0,(x,y)=>x*y%2+x*y%3==0,(x,y)=>(x*y%2+x*y%3)%2==0,(x,y)=>((x+y)%2+x*y%3)%2==0];
+const mask=k=>{for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(!fn[y][x]&&mf[k](x,y))m[y][x]^=1};
+const pen=()=>{let p=0,d=0;for(let a=0;a<n;a++)for(let t=0;t<2;t++){let run=1;for(let b=1;b<n;b++){const c=t?m[b][a]:m[a][b],e=t?m[b-1][a]:m[a][b-1];if(c==e){run++;if(run==5)p+=3;else if(run>5)p++}else run=1}}
+for(let y=0;y<n-1;y++)for(let x=0;x<n-1;x++){const c=m[y][x];if(c==m[y][x+1]&&c==m[y+1][x]&&c==m[y+1][x+1])p+=3}
+m.forEach(r=>r.forEach(c=>d+=c));return p+(Math.ceil(Math.abs(d*20-n*n*10)/(n*n))-1)*10};
+let best=0,bp=1e9;for(let k=0;k<8;k++){mask(k);fmt(k);const p=pen();if(p<bp){bp=p;best=k}mask(k)}
+mask(best);fmt(best);return m}
 
-    <div class="card">
-      <h3>سجل أحداث المباراة</h3>
-      ${G.log.map(l => `<p class="lg">• ${esc(l)}</p>`).join('')}
-    </div>
-
-    <button class="btn red" onclick="newGame()">بدء جولة جديدة</button>
-    <div class="ft">HAKAM MAFIA — عبد الرحمن محمد ضو</div>
-  `;
+function qsvg(t){
+  const m=qr(t);if(!m)return'';const n=m.length,pad=6;let d='';
+  m.forEach((r,y)=>{for(let x=0;x<n;x++)if(r[x]){let e=x;while(e<n&&r[e])e++;d+=`M${x+pad} ${y+pad}h${e-x}v1h-${e-x}z`;x=e}});
+  return`<svg viewBox="0 0 ${n+pad*2} ${n+pad*2}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="100%" height="100%" fill="#ffffff"/><path d="${d}" fill="#000000"/></svg>`;
 }
 
-function newGame() {
-  G = null;
-  V = 'setup';
-  try { localStorage.removeItem('mafia.g'); } catch (e) {}
-  cm();
-  render();
+const b64=s=>btoa(String.fromCharCode(...new TextEncoder().encode(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const unb=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0)));
+
+/* توليد رابط نظيف وقصير ليعمل الكود من أي جوال أو سيرفر محلي، أو نص واضح عند الفتح كملف محلي */
+function lk(i){
+  const payload=b64(G.roles[i]+'|'+(i+1)+'|'+G.names[i]);
+  const base=location.href.split('#')[0];
+  if(/^https?:\/\//i.test(base)){
+    return base+'#c='+payload;
+  }
+  return `HAKAM MAFIA\nاللاعب: ${G.names[i]}\nالمقعد: ${i+1}\nالدور: ${R[G.roles[i]].n}\n${R[G.roles[i]].d}`;
 }
 
-function panel() {
-  if (G.pin) {
-    M(`
-      <h3>لوحة الحكم السرية</h3>
-      <p class="mu">أدخل رمز الحكم المكون من 4 أرقام.</p>
-      <input id="pp" inputmode="numeric" maxlength="4" placeholder="••••">
-      <button class="btn red" onclick="unlock()">فتح اللوحة</button>
-      <button class="btn" onclick="cm()">إغلاق</button>
-    `);
-  } else {
-    showP();
+function qrm(i){
+  const target=lk(i);
+  const isLocal=!(/^https?:\/\//i.test(location.href));
+  const s=qsvg(target);
+  M(`<p class="mu" style="text-align:center"><b>${esc(G.names[i])}</b> — مقعد ${i+1}</p>
+<div class="qb">${s||'<p class="mu" style="padding:12px;color:#333">البيانات طويلة، استعمل زر النسخ.</p>'}</div>
+<p class="mu" style="text-align:center">${isLocal
+  ?'أنت تفتح اللعبة كملف محلي (file://)، لذلك الكود يعرض بطاقة الدور مباشرة عند مسحه بكاميرا أي جوال!'
+  :'خلّيه يصوّر الكود بكاميرا جواله لفتح بطاقته السرية.'}</p>
+<button class="btn" onclick="fin(${i})">تم — صوّر الكود</button>
+<button class="btn gold" onclick="shr(${i})">انسخ أو أرسل البطاقة</button>`);
+}
+function shr(i){
+  const u=lk(i);
+  if(navigator.share)navigator.share({title:'بطاقتك في مافيا الشارع',text:u}).catch(()=>{});
+  else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>toast('تم نسخ البطاقة/الرابط')).catch(()=>toast('تعذّر النسخ'));
+  else toast('جوالك لا يدعم النسخ');
+}
+function cardView(){
+  const c=window._c;
+  if(!c){$('#app').innerHTML='<div class="fl"></div><h2>الرابط مو صحيح</h2><p class="mu">اطلب من الحكم يعيد لك الكود.</p>';return}
+  window._r=R[c.r];
+  $('#app').innerHTML=`<div class="fl"></div><h2>أهلاً ${esc(c.n)}</h2><p class="mu">مقعدك رقم ${esc(c.s)}. دوس مطوّل على الورقة تشوف دورك، وما تفرّجها لحد.</p><div id="cd" class="cd back" onpointerdown="sh(1)" onpointerup="sh(0)" onpointerleave="sh(0)" onpointercancel="sh(0)" oncontextmenu="return false"><span id="cf">دوس مطوّل تشوف دورك</span></div><div class="ft">HAKAM MAFIA · الإصدار المحسّن — صنع عبدالرحمن محمد ضو</div>`;
+}
+
+/* ---------- مزايا الحكم ---------- */
+const snap=()=>{try{U.push(JSON.stringify(G));if(U.length>40)U.shift()}catch(e){}};
+function undo(){
+  if(!U.length)return toast('ما فيش شن يتراجع');
+  if(G.phase=='end'){try{const s=st();s.g--;G.win=='maf'?s.m--:G.win=='cit'&&s.c--;localStorage.setItem('mafia.st',JSON.stringify(s));const h=hist();h.pop();localStorage.setItem('mafia.h',JSON.stringify(h))}catch(e){}}
+  G=JSON.parse(U.pop());V='game';sel=null;if(timer){clearInterval(timer);timer=null}sv();cm();render();
+}
+function nxt(){const a=al().filter(i=>i!==G.sil);if(!a.length)return;G.cur=a[(a.indexOf(G.cur)+1)%a.length];left=S.spk;say(`الكلمة الآن عند ${G.names[G.cur]}.. تفضل!`,{mood:'adnan'});day();if(!timer)tgl()}
+function sug(){
+  const N=tot();if(N<4)return toast('زيّد اللاعبين أول');
+  const m=Math.max(1,Math.floor(N/4)),c={};
+  ['mks','mk','ms','mk','mf'].slice(0,m).forEach(k=>c[k]=(c[k]||0)+1);
+  if(N>=5)c.doc=1;if(N>=7)c.snp=1;if(N>=8)c.may=1;if(N>=10)c.inv=1;if(N>=11)c.obs=1;if(N>=12)c.law=1;if(N>=13)c.grd=1;
+  c.cit=Math.max(0,N-Object.values(c).reduce((a,b)=>a+b,0));
+  D.c=c;setup();
+}
+
+/* ---------- إعدادات، صوت، راوي صوتي محترف (محلي + سحابي احتياطي) ---------- */
+const SD={snd:1,nar:1,lw:1,disc:120,spk:45,vol:.85,rate:.96,tone:'adnan',vUri:''};
+let S={...SD};
+try{Object.assign(S,JSON.parse(localStorage.getItem('mafia.s')||'{}'))}catch(e){}
+S.disc=Math.round(Math.max(30,Math.min(600,Number(S.disc)||120)));S.spk=Math.round(Math.max(10,Math.min(180,Number(S.spk)||45)));S.vol=Math.max(0,Math.min(1,Number(S.vol)||0));S.rate=Math.max(.75,Math.min(1.25,Number(S.rate)||.96));if(!['adnan','dramatic','fast'].includes(S.tone))S.tone='adnan';
+const ss=(k,v)=>{S[k]=v;try{localStorage.setItem('mafia.s',JSON.stringify(S))}catch(e){}};
+
+let AC=null,cloudAudio=null;
+function unlockAudio(){
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+  }catch(e){}
+}
+addEventListener('pointerdown',unlockAudio,{once:true,passive:true});
+
+const SN={on:[[660,.1]],night:[[196,.45],[147,.65],[110,.8]],dawn:[[392,.14],[523,.14],[659,.18],[784,.35]],out:[[147,.25],[110,.55]],win:[[523,.14],[659,.14],[784,.14],[1047,.55]],tick:[[880,.12],[880,.12]]};
+function beep(k){
+  if(!S.snd)return;
+  try{
+    unlockAudio();
+    let t=AC.currentTime;
+    (SN[k]||[]).forEach(([f,d])=>{
+      const o=AC.createOscillator(),g=AC.createGain();
+      o.type=k=='out'||k=='night'?'sawtooth':'sine';
+      o.frequency.value=f;
+      g.gain.setValueAtTime(Math.max(.001,S.vol*.28),t);
+      g.gain.exponentialRampToValueAtTime(.0001,t+d);
+      o.connect(g);g.connect(AC.destination);
+      o.start(t);o.stop(t+d);t+=d;
+    });
+  }catch(e){}
+}
+
+function getAllSpeechVoices(){
+  try{return window.speechSynthesis?speechSynthesis.getVoices()||[]:[]}catch(e){return[]}
+}
+function getArabicVoices(){
+  return getAllSpeechVoices().filter(v=>(v.lang||'').toLowerCase().startsWith('ar'));
+}
+function pickArabicVoice(){
+  const vs=getArabicVoices();
+  if(!vs.length)return null;
+  if(S.vUri){const chosen=vs.find(v=>v.voiceURI===S.vUri);if(chosen)return chosen}
+  const preferred=vs.find(v=>/naayf|hoda|google.*arab|microsoft.*arab|arabic.*(google|microsoft)|majed|tarik|maged|hamed/i.test(v.name));
+  if(preferred)return preferred;
+  const prefs=['ar-LY','ar-EG','ar-SA','ar-AE','ar-JO','ar-LB','ar'];
+  for(const p of prefs){const found=vs.find(v=>(v.lang||'').toLowerCase().startsWith(p.toLowerCase()));if(found)return found}
+  return vs[0];
+}
+function voiceStatusText(){
+  if(!('speechSynthesis' in window))return 'هذا المتصفح لا يوفّر واجهة تحويل النص إلى كلام.';
+  const all=getAllSpeechVoices(),ar=getArabicVoices();
+  if(!all.length)return 'Brave لم يحمّل قائمة الأصوات بعد. اضغط «إعادة فحص الأصوات» أو أعد فتح الصفحة.';
+  if(!ar.length)return `المتصفح يرى ${all.length} صوتًا، لكن لا يوجد بينها صوت عربي. يلزم تثبيت صوت تحويل النص إلى كلام باللغة العربية في Windows.`;
+  const v=pickArabicVoice();
+  return `تم العثور على ${ar.length} صوت عربي من أصل ${all.length}. الصوت المختار: ${v?v.name+' ('+v.lang+')':'تلقائي'}.`;
+}
+function refreshAudioStatus(){
+  const el=$('#audioStatus');if(el)el.textContent=voiceStatusText();
+  const select=$('#audioVoice');
+  if(select){
+    const current=select.value;
+    const vs=getArabicVoices();
+    select.innerHTML='<option value="">تلقائي — أفضل صوت عربي</option>'+vs.map(v=>`<option value="${esc(v.voiceURI)}">${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+    select.value=vs.some(v=>v.voiceURI===current)?current:(S.vUri||'');
   }
 }
-
-async function unlock() {
-  if (await H($('#pp').value) === G.pin) showP();
-  else toast('رمز الحكم غير صحيح');
+function warmSpeechVoices(){
+  if(!('speechSynthesis' in window))return;
+  try{speechSynthesis.getVoices();speechSynthesis.resume()}catch(e){}
+  setTimeout(()=>{try{speechSynthesis.getVoices();refreshAudioStatus()}catch(e){}},250);
+  setTimeout(()=>{try{speechSynthesis.getVoices();refreshAudioStatus()}catch(e){}},1000);
 }
-
-function togglePlayerAlive(i) {
-  G.alive[i] = G.alive[i] ? 0 : 1;
-  G.log.push(`تدخل الحكم: ${G.alive[i] ? 'إعادة' : 'استبعاد'} ${G.names[i]}`);
-  sv();
-  showP();
+function waitForVoices(timeoutMs=2200){
+  if(!('speechSynthesis' in window))return Promise.resolve([]);
+  const initial=getAllSpeechVoices();if(initial.length)return Promise.resolve(initial);
+  return new Promise(resolve=>{
+    let done=false,interval=null,timeout=null;
+    const finish=()=>{
+      const voices=getAllSpeechVoices();
+      if(!voices.length)return;
+      if(done)return;done=true;
+      if(interval)clearInterval(interval);if(timeout)clearTimeout(timeout);
+      try{speechSynthesis.removeEventListener('voiceschanged',finish)}catch(e){}
+      resolve(voices);
+    };
+    try{speechSynthesis.addEventListener('voiceschanged',finish)}catch(e){}
+    interval=setInterval(finish,160);
+    timeout=setTimeout(()=>{
+      if(done)return;done=true;clearInterval(interval);
+      try{speechSynthesis.removeEventListener('voiceschanged',finish)}catch(e){}
+      resolve(getAllSpeechVoices());
+    },timeoutMs);
+    try{speechSynthesis.getVoices()}catch(e){}
+  });
+}
+function onVoicesChanged(){
+  if(V==='setup')setup();
+  refreshAudioStatus();
+}
+if('speechSynthesis' in window){
+  try{speechSynthesis.addEventListener('voiceschanged',onVoicesChanged)}
+  catch(e){speechSynthesis.onvoiceschanged=onVoicesChanged}
+}
+let speechToken=0;
+function stopAllSpeech(){
+  speechToken++;
+  try{if(window.speechSynthesis){speechSynthesis.cancel();speechSynthesis.resume()}}catch(e){}
+}
+function splitNarration(text){
+  const compact=String(text).replace(/\s+/g,' ').trim();
+  if(!compact)return[];
+  const pieces=compact.match(/[^،؛.!؟:]+[،؛.!؟:]?/gu)||[compact];
+  const out=[];
+  for(const raw of pieces){
+    const p=raw.trim();if(!p)continue;
+    if(p.length<=125){out.push(p);continue}
+    const words=p.split(/\s+/);let line='';
+    for(const word of words){if((line+' '+word).trim().length>105&&line){out.push(line);line=word}else line=(line+' '+word).trim()}
+    if(line)out.push(line);
+  }
+  return out;
+}
+async function say(t,opts={}){
+  if(!t)return;
+  lastNarr=t;
+  if(!S.nar&&!opts.force)return;
+  stopAllSpeech();
+  const token=speechToken;
+  if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){
+    toast('تعذّر تشغيل الراوي: واجهة النطق غير متاحة في هذا المتصفح.');return;
+  }
+  await waitForVoices(2200);
+  if(token!==speechToken)return;
+  const voice=pickArabicVoice();
+  if(!voice){
+    toast('لم يعثر Brave على صوت عربي. ثبّت ميزة «تحويل النص إلى كلام» للغة العربية في Windows، ثم اضغط إعادة فحص الأصوات.');
+    refreshAudioStatus();return;
+  }
+  const parts=splitNarration(t),mode=opts.mood||S.tone||'adnan';
+  let index=0;
+  let baseRate=Math.max(.75,Math.min(1.25,Number(S.rate)||.96));
+  let basePitch=1.0;
+  if(mode==='adnan'){baseRate*=.98;basePitch=1.02}
+  else if(mode==='dramatic'){baseRate*=.86;basePitch=.94}
+  else if(mode==='fast'){baseRate*=1.10;basePitch=1.04}
+  const speakNext=()=>{
+    if(token!==speechToken||(!S.nar&&!opts.force)||index>=parts.length)return;
+    const phrase=parts[index++];
+    const u=new SpeechSynthesisUtterance(phrase);
+    u.voice=voice;u.lang=voice.lang||'ar-SA';u.volume=Math.max(0,Math.min(1,Number(S.vol)||0));
+    const emphatic=/[!؟]$/.test(phrase);
+    u.rate=Math.max(.72,Math.min(1.35,baseRate*(emphatic?1.025:(index===1?.97:1))));
+    u.pitch=Math.max(.8,Math.min(1.2,basePitch+(emphatic?.025:0)));
+    u.onend=()=>{if(token!==speechToken)return;const pause=/[.!؟]$/.test(phrase)?420:/[،؛:]$/.test(phrase)?240:130;setTimeout(speakNext,pause)};
+    u.onerror=(event)=>{
+      if(token!==speechToken||event.error==='canceled'||event.error==='interrupted')return;
+      const why=event.error==='not-allowed'?'Brave منع تشغيل الصوت. اضغط زر اختبار الصوت بنفسك واسمح بالصوت للموقع.':`تعذّر تشغيل الصوت (${event.error||'خطأ غير معروف'}). جرّب صوتًا عربيًا آخر.`;
+      toast(why);
+    };
+    try{speechSynthesis.resume();speechSynthesis.speak(u)}catch(e){toast('تعذّر بدء الراوي الصوتي في Brave.')}
+  };
+  setTimeout(speakNext,70);
+}
+function audioPanel(){
+  unlockAudio();warmSpeechVoices();
+  const vs=getArabicVoices();
+  M(`<div class="audio-panel" dir="rtl"><h2>إعدادات الصوت</h2>
+    <p class="mu">اختبر الراوي والمؤثرات، وتأكد أن Brave تعرّف على صوت عربي من جهازك.</p>
+    <div id="audioStatus" class="audio-status">${esc(voiceStatusText())}</div>
+    <label class="mu">الصوت العربي المتاح</label>
+    <select id="audioVoice" onchange="ss('vUri',this.value);testNarrator()"><option value="">تلقائي — أفضل صوت عربي</option>${vs.map(v=>`<option value="${esc(v.voiceURI)}" ${S.vUri===v.voiceURI?'selected':''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('')}</select>
+    <div class="two"><button class="btn red" onclick="testNarrator()">اختبار الراوي 🎙️</button><button class="btn gold" onclick="testSound()">اختبار المؤثرات 🔔</button></div>
+    <label class="mu">مستوى الصوت (${Math.round(S.vol*100)}%) <input type="range" min="0" max="1" step=".05" value="${S.vol}" oninput="ss('vol',+this.value);const v=$('#volLabel');if(v)v.textContent=Math.round(S.vol*100)+'%'" onchange="refreshAudioStatus()"></label><p id="volLabel" class="lg">${Math.round(S.vol*100)}%</p>
+    <div class="audio-panel-note">في Brave: تأكد أن علامة الصوت في التبويب غير مكتومة، وارفع صوت Brave من «موزّع مستوى الصوت» في Windows. إذا لم يظهر صوت عربي، افتح إعدادات Windows ← الوقت واللغة ← اللغة والمنطقة ← العربية ← خيارات اللغة، ثم نزّل ميزة «تحويل النص إلى كلام» إن كانت متاحة. أعد تشغيل Brave واضغط «إعادة فحص الأصوات». اللعبة تستخدم صوت النظام ولا تنشئ صوتًا بشريًا مستقلًا.</div>
+    <button class="btn gold" onclick="warmSpeechVoices();setTimeout(refreshAudioStatus,400);setTimeout(refreshAudioStatus,1200)">إعادة فحص الأصوات</button>
+    <button class="btn" onclick="cm()">إغلاق</button></div>`);
+  setTimeout(refreshAudioStatus,350);setTimeout(refreshAudioStatus,1200);
+}
+function testSound(){unlockAudio();beep('win');}
+const sayOnce=(k,t,opts)=>{if(G&&G.said!==k){G.said=k;say(t,opts)}};
+function repeatNar(){
+  if(!lastNarr)return toast('لا يوجد نص مقروء بعد');
+  S.nar=1;ss('nar',1);say(lastNarr,{force:true});
+}
+function toggleNar(){
+  const next=S.nar?0:1;ss('nar',next);
+  if(!next)stopAllSpeech();else say(lastNarr||'الراوي الصوتي جاهز. تبدأ الحكاية الآن.',{force:true});
   render();
 }
 
-function confirmEndGame() {
-  M(`
-    <h3>تأكيد إنهاء المباراة</h3>
-    <p class="ann">هل أنت متأكد من إنهاء الجلسة الحالية والعودة للإعدادات؟</p>
-    <button class="btn red" onclick="newGame()">نعم، أنهِ المباراة</button>
-    <button class="btn" onclick="showP()">تراجع</button>
-  `);
+/* ---------- تصويت بالأصوات ---------- */
+const tally=vs=>{
+  const c={};
+  Object.entries(vs.v).forEach(([voterIdx,t])=>{
+    if(t>=0){
+      const w=(G.roles[+voterIdx]=='may')?2:1;
+      c[t]=(c[t]||0)+w;
+    }
+  });
+  return c;
+};
+function vstart(){snap();G.vs={v:{}};G.phase='vote';say('حان وقت الحسم! بدأ التصويت الآن.. حددوا اختيار كل لاعب.',{mood:'adnan'});sv();render()}
+function vsheet(){
+  const vs=G.vs,cs=vs.c||al(),c=tally(vs);
+  $('#app').innerHTML=bar()+narBar()+`<h2>التصويت${vs.rv?' (إعادة)':''}</h2><p class="mu">اختار صوت كل لاعب. العمدة يُحسب صوته بصوتين تلقائياً.</p><div class="card">${al().map(i=>`<div class="rl"><b>${esc(G.names[i])}${G.roles[i]=='may'?' <span>(عمدة ×2)</span>':''}</b><select onchange="G.vs.v[${i}]=+this.value;vsheet()"><option value="-2">—</option>${cs.filter(x=>x!==i).map(x=>`<option value="${x}" ${vs.v[i]===x?'selected':''}>${esc(G.names[x])}</option>`).join('')}<option value="-1" ${vs.v[i]===-1?'selected':''}>امتنع</option></select></div>`).join('')}</div>
+<div class="card"><h3>الأصوات</h3>${cs.map(x=>`<p class="lg">${esc(G.names[x])}: <b>${c[x]||0}</b></p>`).join('')}<p class="mu">${Object.keys(vs.v).filter(k=>vs.v[k]>=-1).length} من ${al().length} صوّتوا</p></div>
+<button class="btn red" onclick="vclose()">قفل التصويت</button><button class="btn gold" onclick="G.phase='day';sv();render()">رجوع للنقاش</button>`;
+}
+function vclose(){
+  const vs=G.vs,cs=vs.c||al(),c=tally(vs),mx=Math.max(0,...cs.map(x=>c[x]||0));
+  if(!mx)return toast('ما فيش أصوات لحد');
+  const top=cs.filter(x=>(c[x]||0)==mx);
+  G.log.push(`الجولة ${G.round} — الأصوات${vs.rv?' (إعادة)':''}: ${cs.map(x=>`${G.names[x]} ${c[x]||0}`).join('، ')}`);
+  if(top.length==1)return vote(top[0]);
+  say(`يا إلهي! تعادل مثير في الأصوات بين ${top.map(x=>G.names[x]).join(' و ')}!`,{mood:'adnan'});
+  M(`<h3>تعادل</h3><p class="ann">${top.map(x=>esc(G.names[x])).join('، ')}</p><button class="btn red" onclick="cm();rvote([${top}])">إعادة التصويت بينهم</button><button class="btn gold" onclick="cm();vote(-1)">ما حد يخرج</button>`);
+}
+function rvote(t){G.vs={c:t,v:{},rv:1};sv();render()}
+function lastw(i){G.lw=i;G.phase='lw';left=30;say(`${G.names[i]}.. عندك ثلاثين ثانية لكلمتك الأخيرة قبل المغادرة!`,{mood:'adnan'});sv();render()}
+function lw(){$('#app').innerHTML=bar()+narBar()+`<h2>كلمة أخيرة</h2><p class="ann">${esc(G.names[G.lw])} عنده 30 ثانية يقول شن يبي قبل ما يروح.</p><div class="card"><div class="tm" id="tm"></div><button class="btn" id="tb" onclick="tgl()">ابدأ</button></div><button class="btn red" onclick="nextRound()">كمّل — الليل</button>`;tm()}
+
+/* ---------- الإحصائيات ---------- */
+let PV='setup';const go=v=>{PV=V;V=v;render()},back=()=>{V=PV;render()};
+const hist=()=>{try{return JSON.parse(localStorage.getItem('mafia.h')||'[]')}catch(e){return[]}};
+const won=(w,r)=>w=='maf'?isM(r):w=='jok'?r=='jok':!isM(r)&&r!='jok';
+const WN={maf:'المافيا',cit:'الربع',jok:'المهرج'};
+
+function exportData(){
+  try{
+    const payload={st:st(),h:hist(),s:S,c:D.c,setup:{...D,pin:''},exportedAt:new Date().toISOString()};
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='hakam-mafia-backup.json';
+    a.click();
+    toast('تم تصدير البيانات');
+  }catch(e){toast('تعذّر التصدير')}
+}
+function importData(file){
+  if(!file)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const data=JSON.parse(rd.result);
+      if(Array.isArray(data.h))localStorage.setItem('mafia.h',JSON.stringify(data.h.slice(-200)));
+      if(data.st)localStorage.setItem('mafia.st',JSON.stringify(data.st));
+      if(data.s){Object.assign(S,data.s);localStorage.setItem('mafia.s',JSON.stringify(S))}
+      if(data.c&&typeof data.c==='object'){D.c=data.c;localStorage.setItem('mafia.c',JSON.stringify(D.c))}
+      if(data.setup&&typeof data.setup==='object'){D={...D,...data.setup,pin:'',c:{...D.c,...(data.setup.c||{})}};saveSetup()}
+      toast('تم استيراد البيانات بنجاح');
+      stats();
+    }catch(e){toast('ملف غير صالح')}
+  };
+  rd.readAsText(file);
 }
 
-function showP() {
-  M(`
-    <h3>لوحة الحكم — التحكم الكامل</h3>
-    <div class="card" style="margin:10px 0;padding:10px">
-      <table>
-        ${G.names.map((n, i) => `
-          <tr style="${G.alive[i] ? '' : 'opacity:.5'}">
-            <td>#${i + 1} ${esc(n)}</td>
-            <td style="color:${isM(G.roles[i]) ? '#f87171' : 'var(--gd)'}">${R[G.roles[i]].n}</td>
-            <td style="text-align:left">
-              <button type="button" class="ctrl-chip" style="padding:3px 8px;font-size:0.75rem" onclick="togglePlayerAlive(${i})">
-                ${G.alive[i] ? 'استبعاد' : 'إعادة'}
-              </button>
-            </td>
-          </tr>
-        `).join('')}
-      </table>
-    </div>
-    ${G.log.length ? `<div style="max-height:110px;overflow:auto;margin-bottom:8px">${G.log.map(l => `<p class="lg">• ${esc(l)}</p>`).join('')}</div>` : ''}
-    <button class="btn" onclick="cm()">إغلاق اللوحة</button>
-    <button class="btn gold" onclick="confirmEndGame()">إنهاء المباراة الحالية</button>
-  `);
+function stats(){
+  const h=hist(),pl={},rl={},sd={maf:0,cit:0,jok:0};let rs=0,ms=0,totPlayers=0;
+  h.forEach(g=>{
+    sd[g.w]++;rs+=g.r;ms+=g.m;totPlayers+=g.n;
+    g.p.forEach(([nm,r,alive,sil])=>{
+      const w=won(g.w,r)?1:0;
+      const a=pl[nm]=pl[nm]||{g:0,w:0,surv:0,sil:0,roles:{}};
+      a.g++;a.w+=w;if(alive)a.surv++;if(sil)a.sil++;
+      a.roles[r]=(a.roles[r]||0)+1;
+      const ro=rl[r]=rl[r]||{g:0,w:0};ro.g++;ro.w+=w;
+    });
+  });
+  const pc=a=>a.g?Math.round(100*a.w/a.g)+'%':'0%';
+  const ps=Object.entries(pl).sort((x,y)=>y[1].w-x[1].w||y[1].g-x[1].g);
+  const best=ps.filter(([,a])=>a.g>=3).sort((x,y)=>y[1].w/y[1].g-x[1].w/x[1].g||y[1].g-x[1].g).slice(0,3);
+
+  $('#app').innerHTML=`<div class="fl"></div><div class="bar"><h2>الإحصائيات</h2><div class="acts"><button onclick="exportData()">تصدير</button><button onclick="$('#impF').click()">استيراد</button><button onclick="back()">رجوع</button></div></div>
+<input id="impF" type="file" accept="application/json" style="display:none" onchange="importData(this.files[0])">`+(!h.length?'<p class="mu">لسا ما فيش ألعاب مسجّلة. كل لعبة تخلص تنحفظ هنا في جوالك.</p>':`
+<div class="card"><h3>الملخص العام</h3>
+<p class="lg">الألعاب: ${h.length} · المافيا غلبت ${sd.maf} · الربع غلبو ${sd.cit} · المهرج ${sd.jok}</p>
+<p class="lg">متوسط الجولات: ${(rs/h.length).toFixed(1)} · متوسط المدة: ${Math.round(ms/h.length)} دقيقة · متوسط اللاعبين: ${(totPlayers/h.length).toFixed(1)}</p></div>
+<div class="card"><h3>أفضل اللاعبين</h3><p class="mu">حسب نسبة الفوز، ولازم 3 ألعاب على الأقل.</p>${best.length?best.map(([n,a])=>`<p class="lg">${esc(n)}: <b>${pc(a)}</b> (${a.w} من ${a.g} · نجا ${a.surv} مرة)</p>`).join(''):'<p class="lg">ما فيش لاعب كمّل 3 ألعاب لحد توا.</p>'}</div>
+<div class="card"><h3>سجل اللاعبين</h3><table>${ps.map(([n,a])=>{
+  const topR=Object.entries(a.roles).sort((x,y)=>y[1]-x[1])[0];
+  return`<tr><td><b>${esc(n)}</b><div class="lg">${topR?`الأكثر: ${R[topR[0]].n} (${topR[1]}) · `:''}نجاة: ${a.surv}</div></td><td>${a.g} لعبة</td><td>${a.w} فوز</td><td>${pc(a)}</td></tr>`;
+}).join('')}</table></div>
+<div class="card"><h3>الأدوار</h3><table>${RK.filter(k=>rl[k]).map(k=>`<tr><td>${R[k].n}</td><td>${rl[k].g} مرة</td><td>${pc(rl[k])} فوز</td></tr>`).join('')}</table></div>
+<div class="card"><h3>آخر الألعاب</h3>${h.slice(-12).reverse().map(g=>`<p class="lg">${new Date(g.t).toLocaleDateString('ar')} · ${g.n} لاعب · ${WN[g.w]} · ${g.r} جولات · ${g.m} د</p>`).join('')}</div>
+<button class="btn gold" onclick="if(confirm('تمسح كل الإحصائيات؟')){try{localStorage.removeItem('mafia.h');localStorage.removeItem('mafia.st')}catch(e){}stats()}">مسح الإحصائيات</button>`);
 }
 
+/* ---------- دليل الأدوار ---------- */
+const RG={
+cit:['المواطنين','نهاراً: نقاش وتصويت','لا قدرة ليلية.','تشك في واحد وتقنع الباقي يطلّعوه.'],
+may:['المواطنين','نهاراً: وقت التصويت','صوتك يُحسب بصوتين عند احتساب الأصوات.','ترجّح كفة تصويت حاسم في لحظة متقاربة.'],
+law:['المواطنين','نهاراً: عند إعلان الإقصاء','مرة واحدة في اللعبة تحصّن متهماً من الخروج بالتصويت.','تتدخل لإنقاذ بريء اشتبه به الجميع.'],
+obs:['المواطنين','ليلاً','تعرف هل تم استهداف اللاعب المراقَب ليلاً أم لا.','تراقب لاعباً لتعرف هل اقتربت منه المافيا أو المنقذ.'],
+doc:['المواطنين','ليلاً','ينقذ لاعباً واحداً كل ليلة، ويقدر ينقذ نفسه.','لو المافيا اختارت أحمد والدكتور اختاره، ما يموت حد.'],
+snp:['المواطنين','ليلاً، مرة وحدة في اللعبة','إن أصاب مافيا مات الهدف، وإن أصاب غيره مات القناص.','يضرب ياسر وهو مواطن: يموت القناص بداله.'],
+inv:['المواطنين','ليلاً','يعرف إن كان الهدف مافيا أم لا (المهرج يظهر غير مافيا).','يسأل عن سالم فيرفع الحكم إبهامه لفوق: مافيا.'],
+grd:['المواطنين','ليلاً','يحمي لاعباً؛ إن اختارته المافيا للقتل يموت الحارس بداله.','يحمي الدكتور فتختاره المافيا: يموت الحارس ويعيش الدكتور.'],
+hnt:['المواطنين','نهاراً، عند إقصائه بالتصويت','يضرب لاعباً قبل أن يخرج (لا يعمل إن مات ليلاً).','يطلّعوه بالتصويت فيضرب اللي يشك فيه.'],
+jok:['محايد','نهاراً','يفوز وحده إن أقصاه التصويت.','يتظاهر بالشك في نفسه حتى يصوّتوا عليه.'],
+mf:['المافيا','—','عضو مافيا بلا قدرة، ويحسب مع المافيا في الغلبة.','يدافع عن زملائه في النقاش.'],
+mk:['المافيا','ليلاً','يقتل لاعباً كل ليلة.','المافيا تتفق بصمت على ضحية الليلة.'],
+ms:['المافيا','ليلاً','يُسكِت لاعباً فلا يتكلم في نهار اليوم التالي.','يسكّت المحقق حتى ما يدافع عن نتيجته.'],
+mks:['المافيا','ليلاً','يجمع القتل والإسكات.','يقتل واحداً ويسكّت آخر في الليلة نفسها.']};
+
+function guide(){$('#app').innerHTML=`<div class="fl"></div><div class="bar"><h2>دليل الأدوار</h2><button onclick="back()">رجوع</button></div>`+RK.map(k=>`<div class="card"><h3>${R[k].n} <span class="mu">— ${RG[k][0]}</span></h3><p class="lg">${R[k].d}</p><p class="lg">الوقت: ${RG[k][1]}</p><p class="lg">الشرط: ${RG[k][2]}</p><p class="lg">مثال: ${RG[k][3]}</p></div>`).join('')}
+
+addEventListener('hashchange',()=>location.reload());
+
+window.addEventListener('error',e=>{console.error('HAKAM MAFIA error:',e.error||e.message);try{toast('حدث خطأ غير متوقع. أعد تحميل الصفحة، وإذا تكرر أرسل لقطة من وحدة التحكم.')}catch(_){}});
+window.addEventListener('unhandledrejection',e=>{console.error('HAKAM MAFIA rejection:',e.reason);try{toast('تعذّر إكمال إحدى العمليات. حاول مرة أخرى.')}catch(_){}});
+
+if(/^#c=/.test(location.hash)){V='card';try{const a=unb(location.hash.slice(3)).split('|');window._c=R[a[0]]&&a.length>2?{r:a[0],s:a[1],n:a.slice(2).join('|')}:null}catch(e){window._c=null}}
+
+warmSpeechVoices();
 render();
+window.__HAKAM_MAFIA_READY__=true;
 </script>
 </body>
 </html>
